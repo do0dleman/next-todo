@@ -16,6 +16,21 @@ export const todoRouter = createTRPCRouter({
             };
         }),
 
+    createTodo: publicProcedure
+        .input(z.object({
+            userId: z.string(),
+            body: z.string()
+        }))
+        .mutation(async ({ ctx, input }) => {
+
+            return ctx.db.todo.create({
+                data: {
+                    body: input.body,
+                    userId: input.userId
+                }
+            });
+        }),
+
     updateTodo: publicProcedure
         .input(z.object({
             id: z.number(),
@@ -33,4 +48,16 @@ export const todoRouter = createTRPCRouter({
             });
         }),
 
+    deleteTodo: publicProcedure
+        .input(z.object({
+            id: z.number(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+
+            return ctx.db.todo.delete({
+                where: {
+                    id: input.id
+                }
+            });
+        }),
 });
