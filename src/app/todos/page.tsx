@@ -15,14 +15,14 @@ function Todos() {
         enabled: !!user?.id
     })
 
-    const todos = data ? data!.todos : []
+    const todos = data!.todos
 
     return (
         <>
             <Header />
             <main className="container mx-auto w-fit flex flex-col">
                 <CreateTodo refetch={refetch} />
-                {todos && todos.map(todo => <Todo todoObject={todo} key={todo.id} />)}
+                {todos?.map(todo => <Todo todoObject={todo} key={todo.id} />)}
                 {(todos.length === 0) && <p>{`No todos where found for user ${user ? user.username : ''
                     }`}</p>}
             </main>

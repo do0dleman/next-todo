@@ -1,7 +1,6 @@
 "use client";
-import { useClerk } from "@clerk/nextjs";
-import { PrismaClient, Todo } from "@prisma/client"
-import { useEffect, useState } from "react"
+import { Todo } from "@prisma/client"
+import { useState } from "react"
 import { api } from "~/trpc/react";
 
 type TodoProps = {

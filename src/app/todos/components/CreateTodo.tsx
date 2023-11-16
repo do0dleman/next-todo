@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs"
 import { api } from "~/trpc/react"
 
 type createTodoProps = {
-    refetch: () => {}
+    refetch: () => void
 }
 function CreateTodo(props: createTodoProps) {
     const { user } = useUser()
@@ -14,7 +14,7 @@ function CreateTodo(props: createTodoProps) {
         }
     })
 
-    const createTodoAction = async (formData: FormData) => {
+    const createTodoAction = (formData: FormData) => {
         // "use server"
 
         createTodo.mutate({
