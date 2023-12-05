@@ -7,7 +7,7 @@ import { useUser } from "@clerk/nextjs"
 import { api } from "~/trpc/react";
 
 function Todos() {
-    const { user } = useUser()
+    const { user, isLoaded } = useUser()
 
     const { data, refetch } = api.todo.getUserTodos.useQuery({
         userId: user ? user.id : ''
@@ -15,16 +15,18 @@ function Todos() {
         enabled: !!user?.id
     })
 
-    const todos = data!.todos
+    const todos = data?.todos
+
+    if (!todos) return <div>Loading...</div>
 
     return (
         <>
-            <Header />
             <main className="container mx-auto w-fit flex flex-col">
                 <CreateTodo refetch={refetch} />
                 {todos?.map(todo => <Todo todoObject={todo} key={todo.id} />)}
-                {(todos.length === 0) && <p>{`No todos where found for user ${user ? user.username : ''
+                {((todos.length === 0) && isLoaded) && <p>{`No todos where found for user ${user ? user.username : ''
                     }`}</p>}
+
             </main>
         </>
     )
