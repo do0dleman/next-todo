@@ -20,12 +20,13 @@ function Todos() {
 
     return (
         <>
-            <main className="container mx-auto w-fit flex flex-col">
+            <main className="flex flex-col justify-center children:px-8 mt-20">
+                <div className="mb-20 px-0">
+                    {todos?.map(todo => <Todo todoObject={todo} key={todo.id} />)}
+                    {((todos.length === 0) && isLoaded) && <p>{`No todos where found for user ${user ? user.username : ''
+                        }`}</p>}
+                </div>
                 <CreateTodo refetch={refetch} />
-                {todos?.map(todo => <Todo todoObject={todo} key={todo.id} />)}
-                {((todos.length === 0) && isLoaded) && <p>{`No todos where found for user ${user ? user.username : ''
-                    }`}</p>}
-
             </main>
         </>
     )

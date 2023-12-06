@@ -8,7 +8,12 @@ export default {
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
+      backgroundImage: {
+        'active-gradient': "linear-gradient(to bottom right, #5b21b6, #312e81)",
+      }
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-children')
+  ],
 } satisfies Config;

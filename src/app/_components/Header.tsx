@@ -3,6 +3,8 @@
 import { SignInButton, SignUpButton, useClerk, useUser } from "@clerk/nextjs"
 import Link from "next/link";
 import { useRouter } from "next/navigation"
+import useScroll from "../hooks/useScroll";
+import { useEffect, useState } from "react";
 
 function Header({ isMainPage = false }: { isMainPage?: boolean }) {
 
@@ -11,8 +13,22 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
 
     const router = useRouter()
 
-    let headerClasses = "py-4 px-8 mb-4 flex justify-between align-middle bg-indigo-600"
-    if (isMainPage) headerClasses += "bg-transparent"
+    const scrollY = useScroll()
+    const [isOnTop, setIsOnTop] = useState(true)
+
+    let headerClasses = "py-4 px-8 mb-4 flex justify-between align-middle bg-violet-800 fixed w-full"
+    if (isMainPage && isOnTop) headerClasses += " !bg-transparent"
+
+    useEffect(() => {
+        const height = 72 // height of the header
+
+        if (scrollY > height) {
+            setIsOnTop(false)
+        }
+        if (scrollY <= height) {
+            setIsOnTop(true)
+        }
+    }, [scrollY])
 
     return (
         <header className={headerClasses}>

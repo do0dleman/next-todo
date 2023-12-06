@@ -2,6 +2,7 @@
 import { Todo } from "@prisma/client"
 import { useState } from "react"
 import { api } from "~/trpc/react";
+import { FaRegTrashAlt } from "react-icons/fa";
 
 type TodoProps = {
     todoObject: Todo
@@ -32,19 +33,26 @@ function Todo(props: TodoProps) {
 
     return (
         <>
-            {
-                !isDeleted && <div className="text-2xl flex justify-between">
-                    <div>
-                        <input type="checkbox"
-                            name={`${id}`}
-                            id={`${id}`}
-                            defaultChecked={isChecked}
-                            onChange={HandleTodoChange}
-                            className="mr-2" />
-                        <label htmlFor={`${id}`} className="select-none">{body}</label>
-                    </div>
-                    <button onClick={HandleDeleteClick}>X</button>
-                </div>}
+            {!isDeleted && <label htmlFor={`${id}`} className="group text-2xl flex justify-between even:bg-[#202020] px-8">
+                <div className="py-2">
+                    <input type="checkbox"
+                        name={`${id}`}
+                        id={`${id}`}
+                        defaultChecked={isChecked}
+                        onChange={HandleTodoChange}
+                        className="mr-3 w-6 h-6 accent-violet-800 peer" />
+                    <label
+                        htmlFor={`${id}`}
+                        className="select-none peer-checked:line-through peer-checked:text-opacity-40 peer-checked:text-slate-100">
+                        {body}
+                    </label>
+                </div>
+                <button className="children:fill-transparent group-hover:children:fill-slate-500
+                 hover:children:!fill-red-600 children:transition-all"
+                    onClick={HandleDeleteClick}>
+                    {<FaRegTrashAlt />}
+                </button>
+            </label>}
         </>
     )
 
