@@ -12,7 +12,7 @@ export default function Home() {
         </h1>
         <h4 className="text-xl text-center mt-4 px-8 max-w-5xl">
           This is yet another to do app. You might think that the fact that so many people do this
-          shows how non-creative we've become but it is a good practice for us, developers.
+          shows how non-creative we&apos;ve become but it is a good practice for us, developers.
         </h4>
         <Link href="/todos" className="bg-gradient-to-br rounded bg-purple-800 from-violet-800 to-indigo-900 px-6 py-3 text-lg mt-16 hover:shadow-[0px_0px_5px_2px_#7A44CF] hover:-translate-y-1/4 transition-all duration-300">
           See todos
