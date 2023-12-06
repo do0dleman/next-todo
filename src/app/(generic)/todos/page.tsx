@@ -1,6 +1,5 @@
 "use client";
 
-import Header from "../_components/Header"
 import CreateTodo from "./components/CreateTodo";
 import Todo from "./components/Todo"
 import { useUser } from "@clerk/nextjs"

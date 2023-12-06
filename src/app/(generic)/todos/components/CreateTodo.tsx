@@ -15,7 +15,6 @@ function CreateTodo(props: createTodoProps) {
     })
 
     const createTodoAction = (formData: FormData) => {
-        // "use server"
 
         createTodo.mutate({
             body: formData.get('body') as string,
