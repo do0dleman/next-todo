@@ -8,8 +8,8 @@ export default function Home() {
       <Header isMainPage={true} />
       <main className="flex flex-wrap container min-w-full flex-col items-center justify-center mt-40">
         <h1 className="text-6xl uppercase px-32 self-center mt text-center">
-          Welcome to <br /><span className="text-violet-800">my own</span> <br />
-          <span className="text-slate-800 italic ">generic</span> TODO app
+          Welcome to <br /><span className="text-active">my own</span> <br />
+          <span className="text-inactive italic ">generic</span> TODO app
         </h1>
         <h4 className="text-xl text-center mt-4 px-8 max-w-5xl">
           This is yet another to do app. You might think that the fact that so many people do this

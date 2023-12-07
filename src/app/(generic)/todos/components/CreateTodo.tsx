@@ -31,11 +31,11 @@ function CreateTodo(props: createTodoProps) {
     }
 
     return (
-        <form action={createTodoAction} className="w-full fixed bottom-0 bg-neutral-900 py-4 ">
+        <form action={createTodoAction} className="w-full fixed bottom-0 bg-tertiary py-4 ">
             <input type="text"
                 name="body"
                 placeholder="Write a todo here..."
-                className="mr-2 px-4 py-2 w-full rounded text-2xl bg-transparent outline-none border focus:border-violet-800 transition-all"
+                className="mr-2 px-4 py-2 w-full rounded text-2xl bg-transparent outline-none border focus:border-active transition-all"
                 value={inputValue}
                 onChange={HandleInputChange}
             />

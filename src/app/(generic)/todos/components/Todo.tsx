@@ -33,21 +33,21 @@ function Todo(props: TodoProps) {
 
     return (
         <>
-            {!isDeleted && <label htmlFor={`${id}`} className="group text-2xl flex justify-between even:bg-[#202020] px-8">
+            {!isDeleted && <label htmlFor={`${id}`} className="group text-2xl flex justify-between even:bg-secondary px-8">
                 <div className="py-2">
                     <input type="checkbox"
                         name={`${id}`}
                         id={`${id}`}
                         defaultChecked={isChecked}
                         onChange={HandleTodoChange}
-                        className="mr-3 w-6 h-6 accent-violet-800 peer" />
+                        className="mr-3 w-6 h-6 accent-active peer" />
                     <label
                         htmlFor={`${id}`}
-                        className="select-none peer-checked:line-through peer-checked:text-opacity-40 peer-checked:text-slate-100">
+                        className="select-none peer-checked:line-through peer-checked:text-opacity-60 peer-checked:text-inactive">
                         {body}
                     </label>
                 </div>
-                <button className="children:fill-transparent group-hover:children:fill-slate-500
+                <button className="children:fill-transparent group-hover:children:fill-inactive
                  hover:children:!fill-red-600 children:transition-all"
                     onClick={HandleDeleteClick}>
                     {<FaRegTrashAlt />}
