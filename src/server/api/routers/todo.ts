@@ -34,7 +34,8 @@ export const todoRouter = createTRPCRouter({
     updateTodo: publicProcedure
         .input(z.object({
             id: z.number(),
-            isAciteve: z.boolean()
+            isAcitve: z.boolean(),
+            body: z.string()
         }))
         .mutation(async ({ ctx, input }) => {
 
@@ -43,7 +44,8 @@ export const todoRouter = createTRPCRouter({
                     id: input.id
                 },
                 data: {
-                    isActive: input.isAciteve
+                    isActive: input.isAcitve,
+                    body: input.body,
                 }
             });
         }),

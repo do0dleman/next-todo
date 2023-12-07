@@ -35,7 +35,7 @@ function CreateTodo(props: createTodoProps) {
             <input type="text"
                 name="body"
                 placeholder="Write a todo here..."
-                className="mr-2 px-4 py-2 w-full rounded text-2xl bg-transparent outline-none border focus:border-active transition-all"
+                className="mr-2 px-4 py-2 w-full rounded text-2xl bg-transparent outline-none border border-mainel focus:border-active transition-all placeholder:text-inactive"
                 value={inputValue}
                 onChange={HandleInputChange}
             />

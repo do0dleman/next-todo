@@ -9,7 +9,7 @@ export default {
         main: '#262626',
         secondary: '#202020',
         tertiary: '#171717',
-        active: '#5b21b6',
+        active: '#6B27D8',
         inactive: '#64748b',
         mainel: '#f1f5f9'
       },
