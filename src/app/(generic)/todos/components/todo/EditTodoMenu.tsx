@@ -11,8 +11,8 @@ function EditTodoMenu(props: EditTodoMenuProps) {
     const { HandleDeleteClick, HandleEditClick } = props
 
     return (
-        <Menu as="div" className="relative flex items-center ml-4">
-            <Menu.Button>
+        <Menu as="div" className="relative flex ml-4 items-start">
+            <Menu.Button className="mt-1">
                 <span className="children:fill-inherit hover:fill-mainel transition-all duration-300">
                     <FaEllipsisH />
                 </span>
