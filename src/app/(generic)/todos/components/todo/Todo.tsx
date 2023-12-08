@@ -41,12 +41,20 @@ function Todo(props: TodoProps) {
     const editInputRef = useRef<HTMLInputElement>(null)
     const EditOnblur = () => {
         setIsEditing(false)
+        if (todoBody == "") {
+            HandleDeleteClick()
+        }
         if (body != todoBody) {
             updateTodo.mutate({
                 id: id,
                 body: todoBody,
                 isAcitve: isActive
             })
+        }
+    }
+    const HandleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+        if (e.code === "Enter") {
+            EditOnblur()
         }
     }
 
@@ -59,11 +67,6 @@ function Todo(props: TodoProps) {
 
     const HadnleEditInputChange = (e: ChangeEvent<HTMLInputElement>) => {
         setTodoBody(e.target.value)
-    }
-    const HandleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
-        if (e.code === "Enter") {
-            EditOnblur()
-        }
     }
     //* ---------------------
 
@@ -81,14 +84,18 @@ function Todo(props: TodoProps) {
                     <label
                         htmlFor={`${id}`}
                         className="w-full select-none peer-checked:text-opacity-60 peer-checked:child:line-through peer-checked:text-inactive">
-                        <input type="text" value={todoBody} ref={editInputRef}
+                        <input type="text"
+                            ref={editInputRef}
+                            size={1}
                             className={"bg-transparent w-full outline-none border-b border-inactive focus:border-mainel transition-all"
                                 + (isEditing ? "" : " hidden")}
+                            value={todoBody}
                             onChange={HadnleEditInputChange}
                             onBlur={EditOnblur}
                             onKeyDown={HandleKeyDown}
                         />
-                        <span className={"inline-block border-b border-transparent" + (isEditing ? " hidden" : "")}>
+                        <span className={"inline-block border-b border-transparent relative top-0 "
+                            + (isEditing ? "hidden" : " ")}>
                             {todoBody}
                         </span>
 
