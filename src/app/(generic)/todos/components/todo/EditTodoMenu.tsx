@@ -1,5 +1,5 @@
 import { Menu } from "@headlessui/react"
-import { MouseEventHandler } from "react"
+import type { MouseEventHandler } from "react"
 import { FaEllipsisH, FaPen, FaRegTrashAlt } from "react-icons/fa"
 
 type EditTodoMenuProps = {

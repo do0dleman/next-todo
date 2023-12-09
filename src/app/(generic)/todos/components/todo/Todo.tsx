@@ -3,7 +3,7 @@ import { Todo } from "@prisma/client"
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { api } from "~/trpc/react";
 import EditTodoMenu from "./EditTodoMenu";
-import { KeyboardEvent } from "react"
+import type { KeyboardEvent } from "react"
 import useErrorStore from "~/app/hooks/useErrorStore";
 
 type TodoProps = {
@@ -75,17 +75,17 @@ function Todo(props: TodoProps) {
     useEffect(() => {
         if (editAreaRef.current === null) return
 
-        editAreaRef.current!.style.height = 'auto'
-        editAreaRef.current!.style.height = `${editAreaRef.current!.scrollHeight}px`
+        editAreaRef.current.style.height = 'auto'
+        editAreaRef.current.style.height = `${editAreaRef.current.scrollHeight}px`
     }, [todoBody])
 
     useEffect(() => {
         if (editAreaRef.current === null) return
 
         if (isEditing) {
-            const end = editAreaRef.current!.value.length
-            editAreaRef.current!.setSelectionRange(end, end)
-            editAreaRef.current!.focus()
+            const end = editAreaRef.current.value.length
+            editAreaRef.current.setSelectionRange(end, end)
+            editAreaRef.current.focus()
         }
     }, [isEditing])
     //* ---------------------

@@ -1,8 +1,7 @@
 "use client"
 
 import { useUser } from "@clerk/nextjs"
-import { ChangeEvent, useEffect, useState } from "react"
-import ErrorModal from "~/app/_components/ErrorModal"
+import { ChangeEvent, useState } from "react"
 import useErrorStore from "~/app/hooks/useErrorStore"
 import { api } from "~/trpc/react"
 
