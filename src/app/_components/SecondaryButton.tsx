@@ -1,8 +1,4 @@
-interface SecondaryButtonProps extends React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement> {
-
-}
-
-export default function SecondaryButton(props: SecondaryButtonProps) {
+export default function SecondaryButton(props: React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>) {
 
     const { className, children, ...rest } = props
 
