@@ -19,7 +19,7 @@ export const todoRouter = createTRPCRouter({
     createTodo: publicProcedure
         .input(z.object({
             userId: z.string(),
-            body: z.string()
+            body: z.string().max(256, "Todo can contain only up to 256 characters! Try shorten it up.")
         }))
         .mutation(async ({ ctx, input }) => {
 
@@ -35,7 +35,7 @@ export const todoRouter = createTRPCRouter({
         .input(z.object({
             id: z.number(),
             isAcitve: z.boolean(),
-            body: z.string()
+            body: z.string().max(256, "Todo can contain only up to 256 characters! Try shorten it up.")
         }))
         .mutation(async ({ ctx, input }) => {
 

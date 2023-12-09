@@ -11,7 +11,8 @@ export default {
         tertiary: '#171717',
         active: '#6B27D8',
         inactive: '#64748b',
-        mainel: '#f1f5f9'
+        mainel: '#f1f5f9',
+        error: '#CB1515',
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],

@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import Header from "./_components/Header";
+import ErrorProvider from "./_components/ErrorProvider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -29,9 +29,11 @@ export default function RootLayout({
     }}>
       <html lang="en">
         <body className={`font-sans ${inter.variable} min-h-screen bg-main text-mainel font-mono flex flex-col`}>
-          <TRPCReactProvider cookies={cookies().toString()}>
-            {children}
-          </TRPCReactProvider>
+          <ErrorProvider>
+            <TRPCReactProvider cookies={cookies().toString()}>
+              {children}
+            </TRPCReactProvider>
+          </ErrorProvider>
         </body>
       </html>
     </ClerkProvider>
