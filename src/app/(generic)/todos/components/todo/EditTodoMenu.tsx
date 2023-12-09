@@ -12,7 +12,7 @@ function EditTodoMenu(props: EditTodoMenuProps) {
 
     return (
         <Menu as="div" className="relative flex ml-4 items-start">
-            <Menu.Button className="h-full flex justify-center items-center">
+            <Menu.Button className="flex justify-center items-start w-6 h-6 py-2">
                 <span className="children:fill-inherit hover:fill-mainel transition-all duration-300">
                     <FaEllipsisH />
                 </span>

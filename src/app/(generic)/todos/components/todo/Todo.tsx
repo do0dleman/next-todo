@@ -21,7 +21,6 @@ function Todo(props: TodoProps) {
 
     const updateTodo = api.todo.updateTodo.useMutation({
         onError: (error) => {
-            console.log('qq')
             setError(error.data?.zodError?.fieldErrors.body![0] ?? "Something went wrong...")
         }
     })
@@ -69,20 +68,26 @@ function Todo(props: TodoProps) {
     const HadnleEditClick = () => {
         setIsEditing(true)
     }
-    useEffect(() => {
-        const end = editAreaRef.current!.value.length
-        editAreaRef.current!.setSelectionRange(end, end)
-        if (isEditing) editAreaRef.current!.focus()
-    }, [isEditing])
 
     const HadnleEditAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setTodoBody(e.target.value)
     }
     useEffect(() => {
-        console.log(editAreaRef.current!.offsetHeight)
+        if (editAreaRef.current === null) return
+
         editAreaRef.current!.style.height = 'auto'
         editAreaRef.current!.style.height = `${editAreaRef.current!.scrollHeight}px`
     }, [todoBody])
+
+    useEffect(() => {
+        if (editAreaRef.current === null) return
+
+        if (isEditing) {
+            const end = editAreaRef.current!.value.length
+            editAreaRef.current!.setSelectionRange(end, end)
+            editAreaRef.current!.focus()
+        }
+    }, [isEditing])
     //* ---------------------
 
     return (
@@ -98,28 +103,31 @@ function Todo(props: TodoProps) {
                         className="mt-1 mr-3 w-6 h-6 accent-active peer" />
                     <label
                         htmlFor={`${id}`}
-                        className="w-full select-none peer-checked:text-opacity-60 peer-checked:child:line-through peer-checked:text-inactive">
+                        className="w-full select-none peer-checked:text-opacity-60 peer-checked:child:line-through 
+                        peer-checked:text-inactive relative">
                         <textarea
                             rows={1}
                             ref={editAreaRef}
-                            className={"bg-transparent w-full outline-none border-b border-inactive focus:border-mainel transition-all"
-                                + " resize-none overflow-hidden"
-                                + (isEditing ? "" : " hidden")}
+                            className={"bg-transparent w-full outline-none border-b border-inactive focus:border-mainel"
+                                + " transition-all resize-none overflow-hidden absolute z-30"
+                                + (isEditing ? "" : " invisible")
+                            }
                             value={todoBody}
                             onChange={HadnleEditAreaChange}
                             onBlur={EditOnblur}
                             onKeyDown={HandleKeyDown}
                         />
                         <span className={"block border-b border-transparent max-w-full"
-                            + (isEditing ? " hidden" : " ")}>
+                            + (isEditing ? "invisible" : "")
+                        }>
                             {todoBody}
                         </span>
 
                     </label>
-                </div>
+                </div >
 
                 <EditTodoMenu HandleDeleteClick={HandleDeleteClick} HandleEditClick={HadnleEditClick} />
-            </label>}
+            </label >}
         </>
     )
 
