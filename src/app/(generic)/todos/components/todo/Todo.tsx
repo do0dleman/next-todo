@@ -5,9 +5,10 @@ import { api } from "~/trpc/react";
 import EditTodoMenu from "./EditTodoMenu";
 import type { KeyboardEvent } from "react"
 import useErrorStore from "~/app/hooks/useErrorStore";
+import { Transition } from "@headlessui/react";
 
 type TodoProps = {
-    todoObject: Todo
+    todoObject: Todo,
 }
 function Todo(props: TodoProps) {
     const { body, isActive, id, createdAt, updatedAt } = props.todoObject
@@ -48,8 +49,13 @@ function Todo(props: TodoProps) {
     const editAreaRef = useRef<HTMLTextAreaElement>(null)
     const EditOnblur = () => {
         setIsEditing(false)
+        if (todoBody.length > 256) {
+            setError("Todo can contain only up to 256 characters! Try shorten it up.")
+            return
+        }
         if (todoBody == "") {
             HandleDeleteClick()
+            return
         }
         if (body != todoBody) {
             updateTodo.mutate({
@@ -60,6 +66,7 @@ function Todo(props: TodoProps) {
         }
     }
     const HandleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+        e.preventDefault()
         if (e.code === "Enter") {
             EditOnblur()
         }
@@ -92,42 +99,55 @@ function Todo(props: TodoProps) {
 
     return (
         <>
-            {!isDeleting && <label htmlFor={`${id}`}
-                className=" text-2xl flex justify-between even:bg-secondary px-8 fill-none hover:fill-inactive">
-                <div className="py-2 w-full flex items-start">
-                    <input type="checkbox"
-                        name={`${id}`}
-                        id={`${id}`}
-                        defaultChecked={isChecked}
-                        onChange={HandleTodoStateChange}
-                        className="mt-1 mr-3 w-6 h-6 accent-active peer" />
-                    <label
-                        htmlFor={`${id}`}
-                        className="w-full select-none peer-checked:text-opacity-60 peer-checked:child:line-through 
+            {!isDeleting && //! transtion breaks edit menu, mb something with z-index but not sure
+                // <Transition show={!isDeleting}
+                //     appear={true}
+                //     unmount={false}
+                //     enter={`transition-opacity transition-transform duration-300`}
+                //     enterFrom="opacity-0 translate-y-3"
+                //     enterTo="opacity-100 translate-y-0"
+                //     leave="transition-opacity duration-300 transition-transform"
+                //     leaveFrom="opacity-100 translate-y-0"
+                //     leaveTo="opacity-0 translate-y-3"
+                // >
+                <label htmlFor={`${id}`}
+                    className=" text-2xl flex justify-between px-8 fill-none hover:fill-inactive">
+                    <div className="py-2 w-full flex items-start">
+                        <input type="checkbox"
+                            name={`${id}`}
+                            id={`${id}`}
+                            defaultChecked={isChecked}
+                            onChange={HandleTodoStateChange}
+                            className="mt-1 mr-3 w-6 h-6 accent-active peer" />
+                        <label
+                            htmlFor={`${id}`}
+                            className="w-full select-none peer-checked:text-opacity-60 peer-checked:child:line-through 
                         peer-checked:text-inactive relative">
-                        <textarea
-                            rows={1}
-                            ref={editAreaRef}
-                            className={"bg-transparent w-full outline-none border-b border-inactive focus:border-mainel"
-                                + " transition-all resize-none overflow-hidden absolute z-30"
-                                + (isEditing ? "" : " invisible")
-                            }
-                            value={todoBody}
-                            onChange={HadnleEditAreaChange}
-                            onBlur={EditOnblur}
-                            onKeyDown={HandleKeyDown}
-                        />
-                        <span className={"block border-b border-transparent max-w-full"
-                            + (isEditing ? "invisible" : "")
-                        }>
-                            {todoBody}
-                        </span>
+                            <textarea
+                                rows={1}
+                                ref={editAreaRef}
+                                className={"bg-transparent w-full outline-none border-b border-inactive focus:border-mainel"
+                                    + " transition-all resize-none overflow-hidden absolute z-10"
+                                    + (isEditing ? "" : " invisible")
+                                }
+                                value={todoBody}
+                                onChange={HadnleEditAreaChange}
+                                onBlur={EditOnblur}
+                                onKeyDown={HandleKeyDown}
+                            />
+                            <span className={"block border-b border-transparent max-w-full"
+                                + (isEditing ? "invisible" : "")
+                            }>
+                                {todoBody}
+                            </span>
 
-                    </label>
-                </div >
+                        </label>
+                    </div >
 
-                <EditTodoMenu HandleDeleteClick={HandleDeleteClick} HandleEditClick={HadnleEditClick} />
-            </label >}
+                    <EditTodoMenu HandleDeleteClick={HandleDeleteClick} HandleEditClick={HadnleEditClick} />
+                </label >
+                // </Transition>
+            }
         </>
     )
 

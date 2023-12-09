@@ -30,6 +30,11 @@ function CreateTodo(props: createTodoProps) {
 
     const createTodoAction = (formData: FormData) => {
         if (formData.get('body') === '') return
+
+        if ((formData.get('body') as string).length > 256) {
+            setError("Todo can contain only up to 256 characters! Try shorten it up.")
+            return
+        }
         createTodo.mutate({
             body: formData.get('body') as string,
             userId: user!.id

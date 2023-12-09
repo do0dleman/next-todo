@@ -25,7 +25,7 @@ function Todos() {
         <>
             <main className="flex flex-col justify-center children:px-8 mt-20">
                 <div className="mb-20 px-0">
-                    {todos?.map(todo => <Todo todoObject={todo} key={todo.id} />)}
+                    {todos?.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
                     {((todos.length === 0) && isLoaded) &&
                         <div className="container mx-auto text-center text-xl mt-4">
                             {`No todos where found for user ${user ? user.username : ''}`}
