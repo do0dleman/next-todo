@@ -16,19 +16,20 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     const scrollY = useScroll()
     const [isOnTop, setIsOnTop] = useState(true)
 
-    let headerClasses = "py-4 px-8 mb-4 flex justify-between align-middle bg-violet-800 fixed w-full"
+    let headerClasses = "py-4 px-8 mb-4 flex justify-between align-middle bg-violet-800 fixed w-full transition-colors duration-300"
     if (isMainPage && isOnTop) headerClasses += " !bg-transparent"
 
     useEffect(() => {
-        const height = 72 // height of the header
+        const HEADER_HEIGHT = 72
 
-        if (scrollY > height) {
+        if (scrollY > HEADER_HEIGHT) {
             setIsOnTop(false)
         }
-        if (scrollY <= height) {
+        if (scrollY <= HEADER_HEIGHT) {
             setIsOnTop(true)
         }
     }, [scrollY])
+
 
     return (
         <header className={headerClasses}>
