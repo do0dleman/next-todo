@@ -1,10 +1,9 @@
 "use client"
 
 import { Dialog, Transition } from "@headlessui/react"
-import useErrorStore from "../hooks/useErrorStore"
-import { Fragment } from "react"
+import useErrorStore from "../../store/useErrorStore"
 import { FaExclamationCircle } from "react-icons/fa"
-import SecondaryButton from "./SecondaryButton"
+import SecondaryButton from "../SecondaryButton"
 
 function ErrorProvider({ children }: { children: React.ReactNode }) {
 
@@ -19,7 +18,7 @@ function ErrorProvider({ children }: { children: React.ReactNode }) {
         <>
             <Dialog open={!!error} onClose={onClose} className="relative z-[500]">
                 <div className="fixed inset-0 bg-tertiary/50" aria-hidden="true" />
-                <div className="fixed w-screen h-screen flex items-center justify-center">
+                <div className="fixed w-screen h-screen flex items-center justify-center top-0">
                     <Transition show={!!error} as="div"
                         appear={true}
                         // unmount={false} // does it work?

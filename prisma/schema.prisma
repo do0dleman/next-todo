@@ -8,14 +8,23 @@ generator client {
 datasource db {
     provider     = "mysql"
     url          = env("DATABASE_URL")
-    relationMode = "prisma"
+    relationMode = "foreignKeys"
 }
 
 model Todo {
-    id        Int      @id @default(autoincrement())
-    body      String   @db.VarChar(256)
-    userId    String
-    isActive  Boolean  @default(true)
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
+    id           Int        @id @default(autoincrement())
+    body         String     @db.VarChar(256)
+    userId       String
+    isActive     Boolean    @default(true)
+    createdAt    DateTime   @default(now())
+    updatedAt    DateTime   @updatedAt
+    folder       TodoFolder @relation(fields: [todoFolderId], references: [id])
+    todoFolderId Int
+}
+
+model TodoFolder {
+    id     Int    @id @default(autoincrement())
+    name   String @db.VarChar(32)
+    todos  Todo[]
+    userId String
 }

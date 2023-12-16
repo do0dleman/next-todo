@@ -4,8 +4,7 @@ import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { api } from "~/trpc/react";
 import EditTodoMenu from "./EditTodoMenu";
 import type { KeyboardEvent } from "react"
-import useErrorStore from "~/app/hooks/useErrorStore";
-import { Transition } from "@headlessui/react";
+import useErrorStore from "~/app/store/useErrorStore";
 
 type TodoProps = {
     todoObject: Todo,
@@ -22,7 +21,7 @@ function Todo(props: TodoProps) {
 
     const updateTodo = api.todo.updateTodo.useMutation({
         onError: (error) => {
-            setError(error.data?.zodError?.fieldErrors.body![0] ?? "Something went wrong...")
+            setError(error.data?.zodError?.fieldErrors.body![0])
         }
     })
     const deleteTodo = api.todo.deleteTodo.useMutation({

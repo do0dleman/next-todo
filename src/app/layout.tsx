@@ -5,7 +5,7 @@ import { cookies } from "next/headers";
 import { TRPCReactProvider } from "~/trpc/react";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
-import ErrorProvider from "./_components/ErrorProvider";
+import ErrorProvider from "./_components/ErrorProvider/ErrorProvider";
 
 const inter = Inter({
   subsets: ["latin"],

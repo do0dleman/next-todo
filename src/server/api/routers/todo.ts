@@ -15,10 +15,23 @@ export const todoRouter = createTRPCRouter({
                 todos: todos
             };
         }),
+    getFolderTodos: publicProcedure
+        .input(z.object({ folderId: z.number() }))
+        .query(async ({ input, ctx }) => {
+            const todos = await ctx.db.todo.findMany({
+                where: {
+                    todoFolderId: input.folderId
+                }
+            })
+            return {
+                todos: todos
+            };
+        }),
 
     createTodo: publicProcedure
         .input(z.object({
             userId: z.string(),
+            todoFolderId: z.number(),
             body: z.string().max(256, "Todo can contain only up to 256 characters! Try shorten it up.")
         }))
         .mutation(async ({ ctx, input }) => {
@@ -26,7 +39,8 @@ export const todoRouter = createTRPCRouter({
             return ctx.db.todo.create({
                 data: {
                     body: input.body,
-                    userId: input.userId
+                    todoFolderId: input.todoFolderId,
+                    userId: input.userId,
                 }
             });
         }),
@@ -39,7 +53,7 @@ export const todoRouter = createTRPCRouter({
         }))
         .mutation(async ({ ctx, input }) => {
 
-            return ctx.db.todo.update({
+            return await ctx.db.todo.update({
                 where: {
                     id: input.id
                 },

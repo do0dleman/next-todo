@@ -2,8 +2,9 @@
 
 import { useUser } from "@clerk/nextjs"
 import { ChangeEvent, useState } from "react"
-import useErrorStore from "~/app/hooks/useErrorStore"
+import useErrorStore from "~/app/store/useErrorStore"
 import { api } from "~/trpc/react"
+import useTodoStore from "../../../store"
 
 type createTodoProps = {
     refetch: () => void
@@ -28,6 +29,7 @@ function CreateTodo(props: createTodoProps) {
         }
     })
 
+    const currentFolderId = useTodoStore(state => state.currentFolderId)
     const createTodoAction = (formData: FormData) => {
         if (formData.get('body') === '') return
 
@@ -35,15 +37,23 @@ function CreateTodo(props: createTodoProps) {
             setError("Todo can contain only up to 256 characters! Try shorten it up.")
             return
         }
+
+        if (currentFolderId === undefined) {
+            setError("You must select folder to create a todo!")
+            return
+        }
+
+
         createTodo.mutate({
             body: formData.get('body') as string,
-            userId: user!.id
+            userId: user!.id,
+            todoFolderId: currentFolderId
         })
     }
 
     return (
         <>
-            <form action={createTodoAction} className="w-full fixed bottom-0 bg-tertiary py-4 ">
+            <form action={createTodoAction} className="w-full bg-tertiary py-4 ">
                 <input type="text"
                     name="body"
                     placeholder="Write a todo here..."

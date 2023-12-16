@@ -1,4 +1,5 @@
 import Header from "../_components/Header";
+import HeaderPlaceholder from "../_components/HeaderPlaceholder";
 
 export default function Layout({
     children,
@@ -6,6 +7,7 @@ export default function Layout({
     children: React.ReactNode;
 }) {
     return <>
+        <HeaderPlaceholder />
         <Header />
         {children}
     </>
