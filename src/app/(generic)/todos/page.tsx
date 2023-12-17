@@ -1,13 +1,13 @@
 "use client";
 
-import TodoFolders from "./modules/TodoFolders/TodoFolders";
+import FoldersSection from "./modules/TodoFolders/FoldersSection";
 import TodosSection from "./modules/TodoList/TodosSection";
 
 function Todos() {
 
     return (
-        <div className="flex h-full flex-grow">
-            <TodoFolders />
+        <div className="flex h-full max-h-full flex-grow">
+            <FoldersSection />
             <TodosSection />
         </div>
     )

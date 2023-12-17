@@ -3,8 +3,9 @@
 import { useUser } from "@clerk/nextjs";
 import { api } from "~/trpc/react";
 import FolderList from "./components/FolderList";
+import CreateFolder from "./components/CreateFolder";
 
-function TodoFolders() {
+function FoldersSection() {
 
     const { user, isLoaded } = useUser()
 
@@ -15,9 +16,9 @@ function TodoFolders() {
     const folders = folderData?.folders
 
     return (
-        <div className="bg-main flex-1 basis-1/4 py-2 px-4">
-            <FolderList folders={folders} />
+        <div className="bg-main flex-1 basis-1/4 pt-2 px-4">
+            <FolderList folders={folders} refetch={refetch} />
         </div>
     )
 }
-export default TodoFolders
+export default FoldersSection

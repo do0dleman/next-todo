@@ -29,5 +29,29 @@ export const todoFolderRouter = createTRPCRouter({
                     name: input.name
                 }
             });
-        })
+        }),
+    createFolder: publicProcedure
+        .input(z.object({
+            userId: z.string()
+        }))
+        .mutation(async ({ input, ctx }) => {
+            return await ctx.db.todoFolder.create({
+                data: {
+                    name: 'New Folder',
+                    userId: input.userId
+                }
+            });
+        }),
+    deleteFolder: publicProcedure
+        .input(z.object({
+            id: z.number(),
+        }))
+        .mutation(async ({ ctx, input }) => {
+
+            return await ctx.db.todoFolder.delete({
+                where: {
+                    id: input.id
+                }
+            });
+        }),
 })

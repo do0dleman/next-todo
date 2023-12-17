@@ -7,16 +7,14 @@ import useTodoStore from "../../../store"
 
 type TodoListProps = {
     todos: TodoType[] | undefined,
-    user: UserResource | null | undefined
-    isLoaded: boolean
 }
 
-function TodoList({ todos, user, isLoaded }: TodoListProps) {
+function TodoList({ todos }: TodoListProps) {
     const currentFolderId = useTodoStore(state => state.currentFolderId)
 
     if (currentFolderId === undefined) return <div className="flex items-center justify-center h-full"></div>
 
-    if (!isLoaded || todos === undefined) {
+    if (todos === undefined) {
         return <div className="flex items-center justify-center h-full">
             <HashLoader color="#fff" size={100} />
         </div>
@@ -25,9 +23,9 @@ function TodoList({ todos, user, isLoaded }: TodoListProps) {
     return (
         <div className="px-0 h-full">
             {todos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
-            {((todos.length === 0) && isLoaded) &&
+            {(todos.length === 0) &&
                 <div className="container mx-auto text-center text-xl mt-4">
-                    {`No todos where found for user ${user ? user.username : ''}`}
+                    {`No todos here yet`}
                 </div>}
         </div>
     )

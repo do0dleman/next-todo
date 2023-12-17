@@ -6,7 +6,6 @@ import useTodoStore from "../../store";
 
 function TodosSection() {
 
-    const { user, isLoaded } = useUser()
     const currentFolderId = useTodoStore(store => store.currentFolderId)
 
     const { data, refetch } = api.todo.getFolderTodos.useQuery({
@@ -19,7 +18,7 @@ function TodosSection() {
 
     return (
         <main className="flex flex-col justify-center children:px-8 w-full flex-grow bg-secondary">
-            <TodoList todos={todos} user={user} isLoaded={isLoaded} />
+            <TodoList todos={todos} />
             <CreateTodo refetch={refetch} />
         </main>
     )

@@ -1,4 +1,4 @@
-import type { MouseEventHandler } from "react"
+import { MouseEventHandler } from "react"
 import DeleteButton from "~/app/ui/EditMenu/DeleteButton"
 import EditButton from "~/app/ui/EditMenu/EditButton"
 import EditMenu from "~/app/ui/EditMenu/EditMenu"
@@ -7,8 +7,8 @@ type EditTodoMenuProps = {
     HandleDeleteClick: MouseEventHandler<HTMLButtonElement>,
     HandleEditClick: MouseEventHandler<HTMLButtonElement>,
 }
-function EditTodoMenu(props: EditTodoMenuProps) {
 
+function EditFolderMenu(props: EditTodoMenuProps) {
     const { HandleDeleteClick, HandleEditClick } = props
 
     return (
@@ -18,4 +18,4 @@ function EditTodoMenu(props: EditTodoMenuProps) {
         </EditMenu>
     )
 }
-export default EditTodoMenu
+export default EditFolderMenu

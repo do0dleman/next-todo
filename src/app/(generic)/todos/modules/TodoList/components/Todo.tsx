@@ -65,8 +65,8 @@ function Todo(props: TodoProps) {
         }
     }
     const HandleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        e.preventDefault()
         if (e.code === "Enter") {
+            e.preventDefault()
             EditOnblur()
         }
     }
@@ -76,6 +76,7 @@ function Todo(props: TodoProps) {
     }
 
     const HadnleEditAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        console.log(e)
         setTodoBody(e.target.value)
     }
     useEffect(() => {
