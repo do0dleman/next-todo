@@ -5,6 +5,7 @@ import { api } from "~/trpc/react";
 import EditTodoMenu from "./EditTodoMenu";
 import type { KeyboardEvent } from "react"
 import useErrorStore from "~/app/store/useErrorStore";
+import useInputFieldEdit from "~/app/hooks/useInputFieldEdit";
 
 type TodoProps = {
     todoObject: Todo,
@@ -13,7 +14,6 @@ function Todo(props: TodoProps) {
     const { body, isActive, id, createdAt, updatedAt } = props.todoObject
     const [isChecked, setChecked] = useState(!isActive)
     const [isDeleting, setDeleting] = useState(false)
-    const [isEditing, setIsEditing] = useState(false)
 
     const [todoBody, setTodoBody] = useState(body)
 
@@ -45,9 +45,8 @@ function Todo(props: TodoProps) {
     }
 
     //* This segment handles todo edit
-    const editAreaRef = useRef<HTMLTextAreaElement>(null)
-    const EditOnblur = () => {
-        setIsEditing(false)
+    const EditOnBlur = () => {
+        setEditing(false)
         if (todoBody.length > 256) {
             setError("Todo can contain only up to 256 characters! Try shorten it up.")
             return
@@ -64,19 +63,15 @@ function Todo(props: TodoProps) {
             })
         }
     }
-    const HandleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-        if (e.code === "Enter") {
-            e.preventDefault()
-            EditOnblur()
-        }
-    }
+    const editAreaRef = useRef<HTMLTextAreaElement>(null)
+    const [isEditing, setEditing] = useInputFieldEdit(editAreaRef)
+
 
     const HadnleEditClick = () => {
-        setIsEditing(true)
+        setEditing(true)
     }
 
     const HadnleEditAreaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        console.log(e)
         setTodoBody(e.target.value)
     }
     useEffect(() => {
@@ -86,15 +81,6 @@ function Todo(props: TodoProps) {
         editAreaRef.current.style.height = `${editAreaRef.current.scrollHeight}px`
     }, [todoBody])
 
-    useEffect(() => {
-        if (editAreaRef.current === null) return
-
-        if (isEditing) {
-            const end = editAreaRef.current.value.length
-            editAreaRef.current.setSelectionRange(end, end)
-            editAreaRef.current.focus()
-        }
-    }, [isEditing])
     //* ---------------------
 
     return (
@@ -111,7 +97,7 @@ function Todo(props: TodoProps) {
                 //     leaveTo="opacity-0 translate-y-3"
                 // >
                 <label htmlFor={`${id}`}
-                    className=" text-2xl flex justify-between px-8 fill-none hover:fill-inactive">
+                    className=" text-2xl flex justify-between align-middle px-8 fill-none hover:fill-inactive">
                     <div className="py-2 w-full flex items-start">
                         <input type="checkbox"
                             name={`${id}`}
@@ -132,8 +118,7 @@ function Todo(props: TodoProps) {
                                 }
                                 value={todoBody}
                                 onChange={HadnleEditAreaChange}
-                                onBlur={EditOnblur}
-                                onKeyDown={HandleKeyDown}
+                                onBlur={EditOnBlur}
                             />
                             <span className={"block border-b border-transparent max-w-full"
                                 + (isEditing ? "invisible" : "")
