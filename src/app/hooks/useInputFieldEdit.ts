@@ -15,7 +15,7 @@ export default function useInputFieldEdit(
     const HandleKeyDown = (e: Event) => {
         if ((e as KeyboardEventInit).code === "Enter") {
             e.preventDefault()
-            editAreaRef!.current!.blur()
+            editAreaRef.current!.blur()
         }
     }
 
