@@ -77,7 +77,10 @@ function Folder({ folder }: { folder: TodoFolder }) {
 
     return (
         <>
-            {!isDeleting && <div className="flex fill-none hover:fill-inactive justify-between align-top mb-2">
+            {!isDeleting && <label
+                className="flex fill-none hover:fill-inactive justify-between align-top pb-2"
+                htmlFor={folder.name + folder.id}
+            >
                 <span>
                     <input type="radio" name="folders" id={folder.name + folder.id}
                         className="border-b border-transparent hidden"
@@ -97,7 +100,7 @@ function Folder({ folder }: { folder: TodoFolder }) {
                     />
                 </span>
                 <EditFolderMenu HandleDeleteClick={HandleDeleteClick} HandleEditClick={HandleEditClick} />
-            </div>}
+            </label>}
         </>
     )
 }
