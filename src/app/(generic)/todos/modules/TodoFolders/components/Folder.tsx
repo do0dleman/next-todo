@@ -78,9 +78,14 @@ function Folder({ folder }: { folder: TodoFolder }) {
     return (
         <>
             {!isDeleting && <label
-                className="flex fill-none hover:fill-inactive justify-between align-top pb-2"
+                className={`flex fill-none hover:fill-inactive justify-between align-top py-0.5 relative px-2
+                ${IS_CURRENT_FOLDER ? 'bg-opacity-40 bg-tertiary' : ''}
+                `}
                 htmlFor={folder.name + folder.id}
             >
+                <div className={`w-1 absolute bg-mainel h-full top-0 -left-1 bg-opacity-0 transition-color duration-300
+                ${IS_CURRENT_FOLDER ? 'bg-opacity-100' : ''}
+                `} />
                 <span>
                     <input type="radio" name="folders" id={folder.name + folder.id}
                         className="border-b border-transparent hidden"
@@ -89,8 +94,10 @@ function Folder({ folder }: { folder: TodoFolder }) {
                         onChange={HandleFolderNameClick}
                     />
                     <label htmlFor={folder.name + folder.id}
-                        className={`${IS_CURRENT_FOLDER ? 'underline' : ''} ${isEditing ? 'hidden' : ''}`}
-                    >{folderName}</label>
+                        className={`${IS_CURRENT_FOLDER ? '' : ''} ${isEditing ? 'hidden' : ''}`}
+                    >
+                        {folderName}
+                    </label>
                     <input type="text" className={`bg-transparent outline-none border-b border-transparent 
             transition-colors duration-200 focus:border-mainel w-full ${isEditing ? '' : 'hidden'}`}
                         ref={editInputRef}

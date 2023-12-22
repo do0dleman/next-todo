@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation"
 import useScroll from "../hooks/useScroll";
 import { useEffect, useState } from "react";
+import { FaList as Icon } from "react-icons/fa";
 
 function Header({ isMainPage = false }: { isMainPage?: boolean }) {
 
@@ -34,7 +35,7 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     return (
         <header className={headerClasses}>
             <h2 className="text-4xl">
-                <Link href="/">TODOs</Link>
+                <Link href="/" className="flex gap-2"><Icon />TODOs</Link>
             </h2>
 
             <div className="flex align-middle space-x-4 ">
