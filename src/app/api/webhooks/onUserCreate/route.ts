@@ -29,14 +29,18 @@ async function handler(req: Request) {
 
     await db.todo.createMany({
         data: [{
-            body: 'Click to complete',
-            userId: userId,
-            todoFolderId: todoFolder.id
-        }, {
-            body: 'Or to uncomplete',
+            body: 'Open todo list',
             userId: userId,
             todoFolderId: todoFolder.id,
             isActive: false
+        }, {
+            body: 'Clean the room',
+            userId: userId,
+            todoFolderId: todoFolder.id,
+        }, {
+            body: 'Delete starter todos',
+            userId: userId,
+            todoFolderId: todoFolder.id,
         },
         ]
     })
