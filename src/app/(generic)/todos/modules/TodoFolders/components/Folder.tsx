@@ -37,7 +37,7 @@ function Folder({ folder }: { folder: TodoFolder }) {
         onError: (error) => setError(error.data?.zodError?.fieldErrors.body![0])
     })
 
-    const HandleDeleteClick = async () => {
+    const HandleDeleteClick = () => {
         setDeleting(true)
         if (IS_CURRENT_FOLDER) {
             setCurrentFolderId(undefined)
@@ -49,8 +49,8 @@ function Folder({ folder }: { folder: TodoFolder }) {
             return
         }
 
-        todos.forEach(async (todo) => {
-            await deleteTodo.mutateAsync({ id: todo.id })
+        todos.forEach((todo) => {
+            deleteTodo.mutate({ id: todo.id })
         })
         deleteFolder.mutate({
             id: folder.id
