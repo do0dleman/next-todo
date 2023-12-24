@@ -11,8 +11,8 @@ async function handler(req: Request) {
             name: 'My Day',
             userId: userId
         }
-    }).then(async (todoFolder) => {
-         db.todo.create({
+    }).then((todoFolder) => {
+        db.todo.create({
             data: {
                 body: 'Click to complete',
                 userId: userId,
