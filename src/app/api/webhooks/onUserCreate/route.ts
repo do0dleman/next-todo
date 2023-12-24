@@ -22,17 +22,15 @@ async function handler(req: Request) {
                 userId: userId,
                 todoFolderId: todoFolder.id,
                 isActive: false
-            },
-
-            ]
+            },]
         })
+        return NextResponse.json({ folderId: todoFolder.id })
 
     }).catch(e => {
         console.error(e)
         return NextResponse.json({ error: 'DB error' }, { status: 500 })
     })
 
-    return NextResponse.json({ message: 'done' })
 }
 
 export { handler as POST }
