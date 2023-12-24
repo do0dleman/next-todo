@@ -11,20 +11,20 @@ async function handler(req: Request) {
             name: 'My Day',
             userId: userId
         }
-    }).then((todoFolder) => {
-        void db.todo.create({
-            data: {
+    }).then(async (todoFolder) => {
+        await db.todo.createMany({
+            data: [{
                 body: 'Click to complete',
                 userId: userId,
                 todoFolderId: todoFolder.id
-            }
-        })
-        void db.todo.create({
-            data: {
-                body: 'Or click to uncomplete',
+            }, {
+                body: 'Or to uncomplete',
                 userId: userId,
-                todoFolderId: todoFolder.id
-            }
+                todoFolderId: todoFolder.id,
+                isActive: false
+            },
+
+            ]
         })
 
     }).catch(e => {
