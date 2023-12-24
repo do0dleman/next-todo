@@ -1,4 +1,3 @@
-import { TodoFolder } from '@prisma/client'
 import { create } from 'zustand'
 
 type TodoStore = {

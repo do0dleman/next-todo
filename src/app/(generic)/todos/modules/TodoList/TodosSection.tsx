@@ -1,4 +1,3 @@
-import { useUser } from "@clerk/nextjs"
 import { api } from "~/trpc/react";
 import CreateTodo from "./components/CreateTodo";
 import TodoList from "./components/TodoList";

@@ -3,7 +3,6 @@
 import { useUser } from "@clerk/nextjs";
 import { api } from "~/trpc/react";
 import FolderList from "./components/FolderList";
-import CreateFolder from "./components/CreateFolder";
 
 function FoldersSection() {
 

@@ -1,6 +1,5 @@
 import { Todo as TodoType } from "@prisma/client"
 import Todo from "./Todo"
-import { UserResource } from "@clerk/types"
 import { HashLoader } from "react-spinners"
 import useTodoStore from "../../../store"
 

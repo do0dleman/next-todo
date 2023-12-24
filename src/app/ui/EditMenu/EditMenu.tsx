@@ -1,6 +1,6 @@
 import { Menu, Transition } from "@headlessui/react"
-import { useRef, type MouseEventHandler, useEffect, useState } from "react"
-import { FaEllipsisH, FaPen, FaRegTrashAlt } from "react-icons/fa"
+import { useRef, useEffect, useState } from "react"
+import { FaEllipsisH, } from "react-icons/fa"
 
 function EditTodoMenu({ children }: { children: React.ReactNode }) {
 
