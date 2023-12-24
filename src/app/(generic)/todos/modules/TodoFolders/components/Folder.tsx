@@ -24,17 +24,34 @@ function Folder({ folder }: { folder: TodoFolder }) {
             setDeleting(false)
         }
     })
+    const todosData = api.todo.getFolderTodos.useQuery({ folderId: folder.id })
+    const todos = todosData.data?.todos
+
+    const deleteTodo = api.todo.deleteTodo.useMutation({
+        onError: (error) => {
+            setError(error.data?.zodError?.fieldErrors.body![0])
+        },
+    })
 
     const updateFolder = api.todoFolder.updateFolder.useMutation({
         onError: (error) => setError(error.data?.zodError?.fieldErrors.body![0])
     })
 
-    const HandleDeleteClick = () => {
+    const HandleDeleteClick = async () => {
+        setDeleting(true)
         if (IS_CURRENT_FOLDER) {
-            setError("You cannot delete selected folder!")
+            setCurrentFolderId(undefined)
+        }
+
+        if (!todos) {
+            setError('Failed to load todos for deletion')
+            setDeleting(false)
             return
         }
-        setDeleting(true)
+
+        todos.forEach(async (todo) => {
+            await deleteTodo.mutateAsync({ id: todo.id })
+        })
         deleteFolder.mutate({
             id: folder.id
         })
