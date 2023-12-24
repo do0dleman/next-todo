@@ -16,34 +16,31 @@ async function handler(req: Request) {
         return NextResponse.json({ message: "User already has todos" })
     }
 
-    const todoFolderId: number | undefined | void = await db.todoFolder.create({
+    const todoFolder = await db.todoFolder.create({
         data: {
             name: 'My Day',
             userId: userId
         }
-    }).then(async (todoFolder) => {
-        await db.todo.createMany({
-            data: [{
-                body: 'Click to complete',
-                userId: userId,
-                todoFolderId: todoFolder.id
-            }, {
-                body: 'Or to uncomplete',
-                userId: userId,
-                todoFolderId: todoFolder.id,
-                isActive: false
-            },
-            ]
-        })
-        return todoFolderId
-    }).catch(e => {
-        console.error(e)
     })
 
-    if (todoFolderId !== undefined) {
-        return NextResponse.json({ message: `Succesfully created folder with id ${todoFolderId}` })
+    if (todoFolder === undefined) {
+        return NextResponse.json({ error: 'DB error, failder to create todoFolder' }, { status: 500 })
     }
-    return NextResponse.json({ error: 'DB error, failder to create todoFolder' }, { status: 500 })
+
+    await db.todo.createMany({
+        data: [{
+            body: 'Click to complete',
+            userId: userId,
+            todoFolderId: todoFolder.id
+        }, {
+            body: 'Or to uncomplete',
+            userId: userId,
+            todoFolderId: todoFolder.id,
+            isActive: false
+        },
+        ]
+    })
+    return NextResponse.json({ message: `Succesfully created folder with id ${todoFolder.id}` })
 }
 
 export { handler as POST }
