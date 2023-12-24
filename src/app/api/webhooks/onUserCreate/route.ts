@@ -1,9 +1,10 @@
 import { NextResponse } from 'next/server'
 import { db } from '~/server/db'
+import { OnUserCreateModel } from './model'
 
 export async function handler(req: Request) {
-    const json = await req.json()
-    const userId = json.data.id as string
+    const json = await req.json() as OnUserCreateModel
+    const userId = json.data.id
 
     db.todoFolder.create({
         data: {
@@ -26,10 +27,12 @@ export async function handler(req: Request) {
             }
         })
 
+    }).catch(e => {
+        console.error(e)
+        return NextResponse.json({ error: 'DB error' }, { status: 500 })
     })
 
-    const res = NextResponse.json({ message: 'done' })
-    return res
+    return NextResponse.json({ message: 'done' })
 }
 
 export { handler as POST }
