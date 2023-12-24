@@ -12,7 +12,7 @@ async function handler(req: Request) {
         }
     })
 
-    if (!userTodoFolder) {
+    if (userTodoFolder) {
         return NextResponse.json({ message: "User already has todos" })
     }
 
