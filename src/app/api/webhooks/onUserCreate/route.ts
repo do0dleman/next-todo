@@ -12,14 +12,14 @@ async function handler(req: Request) {
             userId: userId
         }
     }).then(async (todoFolder) => {
-        await db.todo.create({
+         db.todo.create({
             data: {
                 body: 'Click to complete',
                 userId: userId,
                 todoFolderId: todoFolder.id
             }
         })
-        await db.todo.create({
+        db.todo.create({
             data: {
                 body: 'Or click to uncomplete',
                 userId: userId,
