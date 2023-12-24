@@ -1,9 +1,9 @@
 "use client"
 
 import { Dialog, Transition } from "@headlessui/react"
-import useErrorStore from "../../store/useErrorStore"
+import useErrorStore from "../store/useErrorStore"
 import { FaExclamationCircle } from "react-icons/fa"
-import SecondaryButton from "../SecondaryButton"
+import SecondaryButton from "./SecondaryButton"
 
 function ErrorProvider({ children }: { children: React.ReactNode }) {
 

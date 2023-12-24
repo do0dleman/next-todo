@@ -1,8 +1,9 @@
-import { authMiddleware } from "@clerk/nextjs";
+import { stackMiddlewares } from "./app/middlewares/stackMiddlewares";
+import { withAuth } from "./app/middlewares/withAuth";
 
-export default authMiddleware({
-    publicRoutes: ['/']
-});
+const middlewares = [withAuth]
+
+export default stackMiddlewares(middlewares)
 
 export const config = {
     matcher: ['/((?!.+\\.[\\w]+$|_next).*)', '/', '/(api|trpc)(.*)'],
