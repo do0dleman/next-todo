@@ -6,6 +6,16 @@ async function handler(req: Request) {
     const json = await req.json() as OnUserCreateModel
     const userId = json.data.id
 
+    const userTodoFolder = await db.todoFolder.findFirst({
+        where: {
+            userId: userId
+        }
+    })
+
+    if (!userTodoFolder) {
+        return NextResponse.json({ message: "User already has todos" })
+    }
+
     const todoFolderId: number | undefined | void = await db.todoFolder.create({
         data: {
             name: 'My Day',
