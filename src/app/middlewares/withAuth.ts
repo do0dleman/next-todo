@@ -8,6 +8,8 @@ export const withAuth: WithMiddleware = () => {
             '/',
             '/api/webhooks/onUserCreate'
         ],
+        ignoredRoutes: ["/((?!api|trpc))(_next.*|.+\.[\w]+$)",
+            "/api/webhooks/onUserCreate"]
     })
 
 }
