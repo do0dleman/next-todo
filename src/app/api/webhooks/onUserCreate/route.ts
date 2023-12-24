@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server'
 import { db } from '~/server/db'
 import { OnUserCreateModel } from './model'
 
-export async function handler(req: Request) {
+async function handler(req: Request) {
     const json = await req.json() as OnUserCreateModel
     const userId = json.data.id
 
