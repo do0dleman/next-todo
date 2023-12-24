@@ -11,17 +11,19 @@ function FoldersSection() {
     const { data: folderData, refetch } = api.todoFolder.getUserFolders.useQuery(
         { userId: user ? user.id : '' },
         {
-            enabled: isLoaded
+            enabled: isLoaded,
+            refetchInterval(data, query) {
+                const folders = data?.folders
+                if (folders && query.state.dataUpdateCount < 20) {
+                    if (folders.length === 0) {
+                        return 500
+                    }
+                }
+                return 5 * 60 * 1000
+            },
         })
 
     const folders = folderData?.folders
-    if (folders) {
-        if (folders.length === 0) {
-            setTimeout(async () => {
-                await refetch()
-            }, 1000)
-        }
-    }
 
     return (
         <div className="bg-main flex-1 basis-1/4 pt-2 px-4">
