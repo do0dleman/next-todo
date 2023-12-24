@@ -5,9 +5,8 @@ import { OnUserCreateModel } from './model'
 async function handler(req: Request) {
     const json = await req.json() as OnUserCreateModel
     const userId = json.data.id
-    const res = NextResponse
 
-    db.todoFolder.create({
+    const todoFolderId: number | undefined | void = await db.todoFolder.create({
         data: {
             name: 'My Day',
             userId: userId
@@ -23,16 +22,18 @@ async function handler(req: Request) {
                 userId: userId,
                 todoFolderId: todoFolder.id,
                 isActive: false
-            },]
+            },
+            ]
         })
-        res.json({ folderId: todoFolder.id })
-
+        return todoFolderId
     }).catch(e => {
         console.error(e)
-        res.json({ error: 'DB error' }, { status: 500 })
     })
 
-    return res
+    if (todoFolderId !== undefined) {
+        return NextResponse.json({ message: `Succesfully created folder with id ${todoFolderId}` })
+    }
+    return NextResponse.json({ error: 'DB error, failder to create todoFolder' }, { status: 500 })
 }
 
 export { handler as POST }
