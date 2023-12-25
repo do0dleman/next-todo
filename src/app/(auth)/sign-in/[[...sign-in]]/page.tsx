@@ -2,9 +2,7 @@ import { SignIn } from "@clerk/nextjs"
 
 function SignInPage() {
     return (
-        <div className="flex justify-center items-center h-screen">
-            <SignIn />
-        </div>
+        <SignIn />
     )
 }
 export default SignInPage
