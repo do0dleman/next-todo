@@ -97,7 +97,8 @@ function Todo(props: TodoProps) {
                 //     leaveTo="opacity-0 translate-y-3"
                 // >
                 <label htmlFor={`${id}`}
-                    className=" text-2xl flex justify-between align-middle px-8 fill-none hover:fill-inactive">
+                    className=" text-2xl flex justify-between align-middle px-8 
+                    fill-none hover:fill-inactive">
                     <div className="py-2 w-full flex items-start">
                         <input type="checkbox"
                             name={`${id}`}
@@ -107,12 +108,14 @@ function Todo(props: TodoProps) {
                             className="mt-1 mr-3 w-6 h-6 accent-active peer" />
                         <label
                             htmlFor={`${id}`}
-                            className="w-full select-none peer-checked:text-opacity-60 peer-checked:child:line-through 
+                            className="w-full select-none peer-checked:text-opacity-60
+                            peer-checked:child:line-through 
                         peer-checked:text-inactive relative">
                             <textarea
                                 rows={1}
                                 ref={editAreaRef}
-                                className={"bg-transparent w-full outline-none border-b border-inactive focus:border-mainel"
+                                className={"bg-transparent w-full outline-none border-b"
+                                    + " border-inactive focus:border-mainel"
                                     + " transition-all resize-none overflow-hidden absolute z-10"
                                     + (isEditing ? "" : " invisible")
                                 }

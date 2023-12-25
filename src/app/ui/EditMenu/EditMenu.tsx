@@ -13,7 +13,10 @@ function EditTodoMenu({ children }: { children: React.ReactNode }) {
     useEffect(() => {
         if (menuRef.current !== undefined) {
             const clientRect = menuRef.current!.getBoundingClientRect()
-            if (clientRect.x < MENU_WIDTH + MIN_MARGIN) {
+            if (clientRect.width === 0) return
+
+            if (clientRect.x < MENU_WIDTH + MIN_MARGIN &&
+                clientRect.x + MENU_WIDTH + MIN_MARGIN < window.innerWidth) {
                 setClippingLeft(true)
             }
         }

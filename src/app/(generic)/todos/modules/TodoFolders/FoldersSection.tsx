@@ -26,11 +26,11 @@ function FoldersSection({ showMobiles }: { showMobiles: boolean }) {
     const folders = folderData?.folders
 
     return (
-        <div className={`hidden md:flex bg-main flex-1 basis-1/4 pt-2 px-4 
-        ${showMobiles ? '!flex' : ''}
-        `}>
-            <FolderList folders={folders} refetch={refetch} />
-        </div>
+        <>
+            {showMobiles ? <div className={`flex bg-main flex-1 basis-1/4 pt-2 px-4`}>
+                <FolderList folders={folders} refetch={refetch} />
+            </div> : <></>}
+        </>
     )
 }
 export default FoldersSection

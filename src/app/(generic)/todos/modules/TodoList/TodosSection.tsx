@@ -14,14 +14,14 @@ function TodosSection({ showMobiles }: { showMobiles: boolean }) {
     })
 
     const todos = data?.todos
-
     return (
-        <main className={`hidden md:flex flex-col justify-center children:px-8 w-full flex-grow bg-secondary 
-        ${showMobiles ? '!flex' : ''}
-        `}>
-            <TodoList todos={todos} />
-            <CreateTodo refetch={refetch} />
-        </main>
+        <>
+            {showMobiles ? <main className={`flex flex-col justify-center 
+            children:px-8 w-full flex-grow bg-secondary`}>
+                <TodoList todos={todos} />
+                <CreateTodo refetch={refetch} />
+            </main> : <></>}
+        </>
     )
 }
 export default TodosSection
