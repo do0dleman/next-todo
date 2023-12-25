@@ -5,6 +5,15 @@ export default {
   content: ["./src/**/*.tsx"],
   theme: {
     extend: {
+      keyframes: {
+        blink: {
+          '0%, 49%': { opacity: '0' },
+          '50%, 100%': { opacity: '1' },
+        }
+      },
+      animation: {
+        blink: 'blink 1.2s linear infinite'
+      },
       colors: {
         main: '#262626',
         secondary: '#202020',
