@@ -8,7 +8,6 @@ type ErrorState = {
 const useErrorStore = create<ErrorState>((set) => ({
     error: "",
     setError: (error: string | undefined) => {
-        console.log(error)
         if (error === undefined) error = "Something went wrong..."
         set(() => ({ error: error }))
     },

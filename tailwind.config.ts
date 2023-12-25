@@ -19,7 +19,7 @@ export default {
         main: '#262626',
         secondary: '#202020',
         tertiary: '#171717',
-        active: '#6B27D8',
+        active: '#7d2dfe',
         inactive: '#64748b',
         mainel: '#f1f5f9',
         error: '#CB1515',
