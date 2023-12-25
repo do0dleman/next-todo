@@ -1,9 +1,9 @@
 "use client";
+
 import { Todo } from "@prisma/client"
 import { ChangeEvent, useEffect, useRef, useState } from "react"
 import { api } from "~/trpc/react";
 import EditTodoMenu from "./EditTodoMenu";
-import type { KeyboardEvent } from "react"
 import useErrorStore from "~/app/store/useErrorStore";
 import useInputFieldEdit from "~/app/hooks/useInputFieldEdit";
 
