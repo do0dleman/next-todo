@@ -3,7 +3,7 @@ import CreateTodo from "./components/CreateTodo";
 import TodoList from "./components/TodoList";
 import useTodoStore from "../../store";
 
-function TodosSection() {
+function TodosSection({ showMobiles }: { showMobiles: boolean }) {
 
     const currentFolderId = useTodoStore(store => store.currentFolderId)
 
@@ -16,7 +16,9 @@ function TodosSection() {
     const todos = data?.todos
 
     return (
-        <main className="flex flex-col justify-center children:px-8 w-full flex-grow bg-secondary">
+        <main className={`hidden md:flex flex-col justify-center children:px-8 w-full flex-grow bg-secondary 
+        ${showMobiles ? '!flex' : ''}
+        `}>
             <TodoList todos={todos} />
             <CreateTodo refetch={refetch} />
         </main>

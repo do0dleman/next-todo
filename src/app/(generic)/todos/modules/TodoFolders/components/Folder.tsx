@@ -95,12 +95,14 @@ function Folder({ folder }: { folder: TodoFolder }) {
     return (
         <>
             {!isDeleting && <label
-                className={`flex fill-none hover:fill-inactive justify-between align-top py-0.5 relative px-2
+                className={`flex fill-none hover:fill-inactive justify-between 
+                align-top py-0.5 relative px-2 text-xl md:text-base
                 ${IS_CURRENT_FOLDER ? 'bg-opacity-40 bg-tertiary' : ''}
                 `}
                 htmlFor={folder.name + folder.id}
             >
-                <div className={`w-1 absolute bg-mainel h-full top-0 -left-1 bg-opacity-0 transition-color duration-300
+                <div className={`w-1 absolute bg-mainel h-full top-0 -left-1 
+                bg-opacity-0 transition-color duration-300
                 ${IS_CURRENT_FOLDER ? 'bg-opacity-100' : ''}
                 `} />
                 <span>
@@ -115,8 +117,11 @@ function Folder({ folder }: { folder: TodoFolder }) {
                     >
                         {folderName}
                     </label>
-                    <input type="text" className={`bg-transparent outline-none border-b border-transparent 
-            transition-colors duration-200 focus:border-mainel w-full ${isEditing ? '' : 'hidden'}`}
+                    <input type="text" className={`bg-transparent outline-none 
+                    border-b border-transparent 
+                    transition-colors duration-200 focus:border-mainel w-full 
+                    ${isEditing ? '' : 'hidden'}
+                    `}
                         ref={editInputRef}
                         value={folderName}
                         onChange={HandleFolderNameChange}

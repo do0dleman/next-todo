@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs";
 import { api } from "~/trpc/react";
 import FolderList from "./components/FolderList";
 
-function FoldersSection() {
+function FoldersSection({ showMobiles }: { showMobiles: boolean }) {
 
     const { user, isLoaded } = useUser()
 
@@ -26,7 +26,9 @@ function FoldersSection() {
     const folders = folderData?.folders
 
     return (
-        <div className="bg-main flex-1 basis-1/4 pt-2 px-4">
+        <div className={`hidden md:flex bg-main flex-1 basis-1/4 pt-2 px-4 
+        ${showMobiles ? '!flex' : ''}
+        `}>
             <FolderList folders={folders} refetch={refetch} />
         </div>
     )

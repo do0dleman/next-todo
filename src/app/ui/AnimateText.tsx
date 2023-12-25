@@ -57,13 +57,13 @@ function AnimateText({ text, duration, brPositions }: AnimateTextProps) {
 
     return (
         <>
-            <div className="relative text-transparent p-inherit">
-                <span dangerouslySetInnerHTML={{
+            <div className="relative text-transparent p-inherit select-none">
+                <span className="w-full block" dangerouslySetInnerHTML={{
                     __html: placeholderText
                 }} />
 
                 <span className={`absolute w-[105%] top-0 left-0 text-mainel -z-[1] 
-                after:contents after:content-['|'] after:text-active 
+                after:content-['|'] after:text-active select-text
                 ${isFinished ? 'after:animate-blink' : ''}`}
                     dangerouslySetInnerHTML={{
                         __html: displayText

@@ -11,8 +11,8 @@ type FolderListProps = {
 function FolderList({ folders, refetch }: FolderListProps) {
 
     return (
-        <div className="">
-            <h2 className="flex gap-2 align-bottom mb-1 text-xl justify-between">
+        <div className="w-full">
+            <h2 className="flex gap-2 align-bottom mb-1 text-2xl md:text-xl justify-between">
                 <span className="flex gap-2 align-bottom">
                     <span className="self-center"><FaFolder /> </span>
                     Folders

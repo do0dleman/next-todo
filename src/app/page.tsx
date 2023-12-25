@@ -8,8 +8,9 @@ export default function Home() {
   return (
     <div className="bg-transparent flex-1">
       <Header isMainPage={true} />
-      <main className="flex flex-wrap container min-w-full flex-col items-center justify-center my-40">
-        <h1 className="text-7xl uppercase px-32 self-center text-center">
+      <main className="flex flex-wrap container min-w-full
+      flex-col items-center justify-center md:my-40 my-32">
+        <h1 className="md:text-7xl text-6xl uppercase md:px-32 px-6 self-center text-center">
           {/* Welcome to <br /><span className="text-active">my own</span> <br />
           <span className="text-inactive italic ">generic</span> TODO app */}
           {/* Welcome to my own generic TODO app */}
@@ -19,7 +20,7 @@ export default function Home() {
             brPositions={[2, 4]}
           />
         </h1>
-        <h4 className="text-2xl text-center mt-12 px-8 max-w-5xl">
+        <h4 className="md:text-2xl text-lg text-center mt-12 px-8 max-w-5xl">
           This is yet another to do app. You might think that the fact that so many people create such apps
           shows how non-creative we&apos;ve become, but it is a good practice for us, developers.
         </h4>
