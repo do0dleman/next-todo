@@ -15,7 +15,7 @@ export default function Home() {
     <div className="bg-transparent flex-1">
       <Header isMainPage={true} />
       <main className="flex flex-wrap container min-w-full
-      flex-col items-center justify-center md:my-40 my-32">
+      flex-col items-center justify-center md:mt-40 mt-32 md:pb-24 pb-32">
         <h1 className="md:text-7xl text-6xl uppercase md:px-32 px-6 self-center text-center">
           <AnimateText
             duration={70}
@@ -37,8 +37,9 @@ export default function Home() {
         </Link>
       </main>
       <ParticlesBackground />
+      <SectionWave className="children:opacity-0" />
       <div className="bg-deepBlue -z-20 absolute w-full h-full top-0" />
-      <section className="bg-main py-20 relative">
+      <section className="bg-main pb-20 relative">
         <SectionWave className="absolute top-0 translate-y-[-100%] rotate-180 children:fill-main" />
         <SectionContainer>
           <article className="md:w-2/3 md:pr-20">
@@ -90,7 +91,9 @@ export default function Home() {
         </SectionContainer>
       </section>
       <footer className="bg-tertiary py-4 text-lg text-center">
-        <p>Made by <Link className="text-active" href="">Ņikita Obrazcovs</Link>. © 2023 All rights reserved.</p>
+        <p>Made by <Link target="_blank"
+          className="text-active" href="https://github.com/do0dleman/"
+        >Ņikita Obrazcovs</Link>. © 2023 All rights reserved.</p>
       </footer>
     </div >
   )

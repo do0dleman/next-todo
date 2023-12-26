@@ -13,7 +13,7 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Do0dle Todos",
+  title: "do0dle Todos",
   description: "NEXT.js todo app",
   icons: [{ rel: "icon", url: "/favicon.ico" }],
 };
