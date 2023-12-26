@@ -59,7 +59,7 @@ export default function Home() {
         </SectionContainer>
         <SectionWave className="absolute bottom-0 translate-y-[98%]" />
       </section >
-      <section className="pt-32 pb-28 bg-secondary">
+      <section className="pt-32 pb-10 md:pb-28 bg-secondary">
         <SectionContainer>
           <SvgImage>
             <FaFolder />
