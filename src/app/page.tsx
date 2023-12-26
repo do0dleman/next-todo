@@ -21,8 +21,8 @@ export default function Home() {
           <span className="text-inactive italic ">generic</span> TODO app */}
           {/* Welcome to my own generic TODO app */}
           <AnimateText
+            duration={70}
             text={"Welcome to my own generic TODO app"}
-            duration={100}
             brPositions={[2, 4]}
           />
         </h1>
@@ -40,8 +40,12 @@ export default function Home() {
         <SectionWave className="absolute top-0 translate-y-[-100%] rotate-180 children:fill-main" />
         <SectionContainer>
           <article className="md:w-2/3 md:pr-20">
-            <Title1>Make your
-              life <span className="text-active">easier</span></Title1>
+            <Title1>
+              {/* Make your life <span className="text-active">easier</span> */}
+              <AnimateText
+                text={"Make your life easier"}
+              />
+            </Title1>
             <TextBlock>
               <p>Embrace the power of <span className="text-active">organization</span> with this todo list.
                 Stay focused, prioritize tasks, and achieve your goals with ease.</p>
@@ -62,7 +66,10 @@ export default function Home() {
           </SvgImage>
           <article className="md:w-2/3 md:pl-20">
             <Title1>
-              Organize your Todos in <span className="text-active">foldres</span>
+              {/* Organize your Todos in <span className="text-active">foldres</span> */}
+              <AnimateText
+                text="Organize your Todos in folders"
+              />
             </Title1>
             <TextBlock >
               <p>

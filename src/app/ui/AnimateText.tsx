@@ -1,13 +1,14 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react"
+import useScroll from "../hooks/useScroll";
 
 type AnimateTextProps = {
     text: string,
-    duration: number,
+    duration?: number,
     brPositions?: number[]
 }
-function AnimateText({ text, duration, brPositions }: AnimateTextProps) {
+function AnimateText({ text, duration = 50, brPositions }: AnimateTextProps) {
 
     const [displayText, setDisplayText] = useState('')
     const indexRef = useRef<number>(0)
@@ -32,7 +33,18 @@ function AnimateText({ text, duration, brPositions }: AnimateTextProps) {
         })
     }
 
+    const textRef = useRef<HTMLDivElement>(null)
+    const scroll = useScroll()
+    const isStartedRef = useRef(false)
+
     useEffect(() => {
+        if (textRef.current !== null && !isStartedRef.current) {
+            const boundingRect = textRef.current.getBoundingClientRect()
+            if (boundingRect.y + boundingRect.height > window.innerHeight) {
+                return
+            }
+        }
+        isStartedRef.current = true
         if (indexRef.current >= text.length) {
             setFinished(true)
             return
@@ -47,22 +59,22 @@ function AnimateText({ text, duration, brPositions }: AnimateTextProps) {
                 })
             }
             addString += text[indexRef.current]
-
+            console.log(addString)
             setDisplayText(displayText + addString)
             indexRef.current++
         }, duration)
 
         return () => clearTimeout(timeout)
-    }, [displayText])
+    }, [displayText, isStartedRef.current ? null : scroll])
 
     return (
         <>
-            <div className="relative text-transparent p-inherit select-none">
+            <div className="relative text-transparent p-inherit select-none" ref={textRef}>
                 <span className="w-full block" dangerouslySetInnerHTML={{
                     __html: placeholderText
                 }} />
 
-                <span className={`absolute w-[105%] top-0 left-0 text-mainel -z-[1] 
+                <span className={`absolute w-[105%] top-0 left-0 text-mainel z-[1] 
                 after:content-['|'] after:text-active select-text
                 ${isFinished ? 'after:animate-blink' : ''}`}
                     dangerouslySetInnerHTML={{
