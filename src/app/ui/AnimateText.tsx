@@ -6,13 +6,16 @@ import useScroll from "../hooks/useScroll";
 type AnimateTextProps = {
     text: string,
     duration?: number,
-    brPositions?: number[]
+    brPositions?: number[],
+    contentOnFinish?: React.ReactNode
 }
-function AnimateText({ text, duration = 50, brPositions }: AnimateTextProps) {
+function AnimateText({ text, duration = 50, brPositions, contentOnFinish }: AnimateTextProps) {
 
     const [displayText, setDisplayText] = useState('')
     const indexRef = useRef<number>(0)
     const [isFinished, setFinished] = useState(false)
+
+    if (!contentOnFinish) contentOnFinish = text
 
     const whitespaceIndecies = useMemo(() => {
         const whitespaces: number[] = []
@@ -46,8 +49,10 @@ function AnimateText({ text, duration = 50, brPositions }: AnimateTextProps) {
         }
         isStartedRef.current = true
         if (indexRef.current >= text.length) {
-            setFinished(true)
-            return
+            const finishTimeout = setTimeout(() => {
+                setFinished(true)
+            }, duration + 100)
+            return () => clearTimeout(finishTimeout)
         }
         const timeout = setTimeout(() => {
             let addString = ''
@@ -59,7 +64,6 @@ function AnimateText({ text, duration = 50, brPositions }: AnimateTextProps) {
                 })
             }
             addString += text[indexRef.current]
-            console.log(addString)
             setDisplayText(displayText + addString)
             indexRef.current++
         }, duration)
@@ -74,14 +78,19 @@ function AnimateText({ text, duration = 50, brPositions }: AnimateTextProps) {
                     __html: placeholderText
                 }} />
 
-                <span className={`absolute w-[105%] top-0 left-0 text-mainel z-[1] 
+                {isFinished ? <span className={`absolute w-[105%] top-0 left-0 text-mainel z-[1] 
+                    after:content-['|'] after:text-active select-text after:animate-blink`}
+                >
+                    {contentOnFinish}
+                </span> :
+                    <span className={`absolute w-[105%] top-0 left-0 text-mainel z-[1] 
                 after:content-['|'] after:text-active select-text
                 ${isFinished ? 'after:animate-blink' : ''}`}
-                    dangerouslySetInnerHTML={{
-                        __html: displayText
-                    }}
-                >
-                </span>
+                        dangerouslySetInnerHTML={{
+                            __html: displayText
+                        }}
+                    >
+                    </span>}
             </div>
         </>
     )

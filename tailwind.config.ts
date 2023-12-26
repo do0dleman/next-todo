@@ -15,7 +15,7 @@ export default {
         blink: 'blink 1.2s linear infinite'
       },
       colors: {
-        front: '#282828',
+        front: '#303030',
         main: '#262626',
         secondary: '#202020',
         tertiary: '#171717',

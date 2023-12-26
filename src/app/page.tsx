@@ -17,20 +17,22 @@ export default function Home() {
       <main className="flex flex-wrap container min-w-full
       flex-col items-center justify-center md:my-40 my-32">
         <h1 className="md:text-7xl text-6xl uppercase md:px-32 px-6 self-center text-center">
-          {/* Welcome to <br /><span className="text-active">my own</span> <br />
-          <span className="text-inactive italic ">generic</span> TODO app */}
-          {/* Welcome to my own generic TODO app */}
           <AnimateText
             duration={70}
             text={"Welcome to my own generic TODO app"}
             brPositions={[2, 4]}
+            contentOnFinish={<>
+              Welcome to <br /><span className="text-active">my own</span> <br />
+              <span className="text-inactive italic ">generic</span> TODO app
+            </>}
           />
         </h1>
         <h4 className="md:text-2xl text-lg text-center mt-12 px-8 max-w-5xl">
           This is yet another to do app. You might think that the fact that so many people create such apps
           shows how non-creative we&apos;ve become, but it is a good practice for us, developers.
         </h4>
-        <Link href="/todos" className="rounded bg-active-gradient px-6 py-3 text-lg mt-6 hover:shadow-[0px_0px_5px_2px_#7A44CF] hover:-translate-y-1/4 transition-all duration-300">
+        <Link href="/todos" className="rounded bg-active-gradient px-6 py-3 text-lg mt-6 
+        hover:shadow-[0px_0px_5px_2px_#7A44CF] hover:-translate-y-1/4 transition-all duration-300">
           See todos
         </Link>
       </main>
@@ -44,6 +46,9 @@ export default function Home() {
               {/* Make your life <span className="text-active">easier</span> */}
               <AnimateText
                 text={"Make your life easier"}
+                contentOnFinish={<>
+                  Make your life <span className="text-active">easier</span>
+                </>}
               />
             </Title1>
             <TextBlock>
@@ -66,9 +71,11 @@ export default function Home() {
           </SvgImage>
           <article className="md:w-2/3 md:pl-20">
             <Title1>
-              {/* Organize your Todos in <span className="text-active">foldres</span> */}
               <AnimateText
                 text="Organize your Todos in folders"
+                contentOnFinish={<>
+                  Organize your Todos in <span className="text-active">folders</span>
+                </>}
               />
             </Title1>
             <TextBlock >
