@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react"
-import useScroll from "../hooks/useScroll";
+import useScroll from "~/app/hooks/useScroll";
 
 type AnimateTextProps = {
     text: string,

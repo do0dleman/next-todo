@@ -17,10 +17,6 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     const scrollY = useScroll()
     const [isOnTop, setIsOnTop] = useState(true)
 
-    let headerClasses = `py-4 px-8 mb-4 flex justify-between align-middle 
-    bg-violet-800 fixed w-full transition-colors duration-300 z-50`
-    if (isMainPage && isOnTop) headerClasses += " !bg-transparent"
-
     useEffect(() => {
         const HEADER_HEIGHT = 72
 
@@ -34,7 +30,9 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
 
 
     return (
-        <header className={headerClasses}>
+        <header className={`py-4 px-8 mb-4 flex justify-between align-middle 
+        bg-active fixed w-full transition-colors duration-300 z-50 
+        ${isMainPage && isOnTop ? '!bg-transparent' : 'shadow-2xl'}`}>
             <h2 className="text-4xl">
                 <Link href="/" className="flex gap-2"><Icon />TODOs</Link>
             </h2>

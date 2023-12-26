@@ -1,13 +1,14 @@
 import Link from "next/link";
 import Header from "./_components/Header";
 import ParticlesBackground from "./_components/ParticlesBackground";
-import AnimateText from "./ui/AnimateText";
 import { FaFolder, FaRegListAlt } from "react-icons/fa/"
 import SectionWave from "./ui/svg/SectionWave";
-import Title1 from "./ui/Titles/Title1";
-import TextBlock from "./ui/TextBlock";
-import SvgImage from "./ui/SvgImage";
-import SectionContainer from "./ui/SectionContainer";
+import AnimateText from "./(mainPage)/components/AnimateText";
+import SeeTodosButton from "./(mainPage)/components/SeeTodosButton";
+import SectionContainer from "./(mainPage)/ui/SectionContainer";
+import Title1 from "./(mainPage)/ui/Titles/Title1";
+import TextBlock from "./(mainPage)/ui/TextBlock";
+import SvgImage from "./(mainPage)/ui/SvgImage";
 
 export default function Home() {
 
@@ -31,20 +32,16 @@ export default function Home() {
           This is yet another to do app. You might think that the fact that so many people create such apps
           shows how non-creative we&apos;ve become, but it is a good practice for us, developers.
         </h4>
-        <Link href="/todos" className="rounded bg-active-gradient px-6 py-3 text-lg mt-6 
-        hover:shadow-[0px_0px_5px_2px_#7A44CF] hover:-translate-y-1/4 transition-all duration-300">
-          See todos
-        </Link>
+        <SeeTodosButton />
       </main>
       <ParticlesBackground />
       <SectionWave className="children:opacity-0" />
       <div className="bg-deepBlue -z-20 absolute w-full h-full top-0" />
-      <section className="bg-main pb-20 relative">
+      <section className="bg-main pb-20 pt-16 relative">
         <SectionWave className="absolute top-0 translate-y-[-100%] rotate-180 children:fill-main" />
         <SectionContainer>
           <article className="md:w-2/3 md:pr-20">
             <Title1>
-              {/* Make your life <span className="text-active">easier</span> */}
               <AnimateText
                 text={"Make your life easier"}
                 contentOnFinish={<>
@@ -65,7 +62,8 @@ export default function Home() {
         </SectionContainer>
         <SectionWave className="absolute bottom-0 translate-y-[98%]" />
       </section >
-      <section className="pt-32 pb-10 md:pb-28 bg-secondary">
+      <section className="pt-12 pb-10 md:pb-28 bg-secondary">
+        <SectionWave className="children:opacity-0" />
         <SectionContainer>
           <SvgImage>
             <FaFolder />
