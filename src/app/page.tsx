@@ -2,8 +2,12 @@ import Link from "next/link";
 import Header from "./_components/Header";
 import ParticlesBackground from "./_components/ParticlesBackground";
 import AnimateText from "./ui/AnimateText";
-import { FaRegListAlt } from "react-icons/fa/"
+import { FaFolder, FaRegListAlt } from "react-icons/fa/"
 import SectionWave from "./ui/svg/SectionWave";
+import Title1 from "./ui/Titles/Title1";
+import TextBlock from "./ui/TextBlock";
+import SvgImage from "./ui/SvgImage";
+import SectionContainer from "./ui/SectionContainer";
 
 export default function Home() {
 
@@ -31,31 +35,49 @@ export default function Home() {
         </Link>
       </main>
       <ParticlesBackground />
+      <div className="bg-deepBlue -z-20 absolute w-full h-full top-0" />
       <section className="bg-main py-20 relative">
-        <SectionWave className="absolute top-0 translate-y-[-100%] children:fill-main" />
-        <div className="container m-auto flex flex-col md:flex-row px-2">
+        <SectionWave className="absolute top-0 translate-y-[-100%] rotate-180 children:fill-main" />
+        <SectionContainer>
           <article className="md:w-2/3 md:pr-20">
-            <h1 className="text-6xl py-12 text-left">Make your
-              life <span className="text-active">easier</span></h1>
-            <div className="md:text-2xl text-xl children:pb-4">
+            <Title1>Make your
+              life <span className="text-active">easier</span></Title1>
+            <TextBlock>
               <p>Embrace the power of <span className="text-active">organization</span> with this todo list.
                 Stay focused, prioritize tasks, and achieve your goals with ease.</p>
               <p>Experience the transformative impact of efficient <span className="text-active">task
                 management</span> as you conquer your day one checklist at a time.</p>
-            </div>
+            </TextBlock>
           </article>
-          <div className="children:fill-active flex justify-center items-center 
-          flex-grow children:min-w-full children:min-h-full children:h-44">
+          <SvgImage>
             <FaRegListAlt />
-          </div>
-        </div>
-        <SectionWave className="absolute bottom-0 rotate-0 translate-y-[98%]" />
+          </SvgImage>
+        </SectionContainer>
+        <SectionWave className="absolute bottom-0 translate-y-[98%]" />
+      </section >
+      <section className="pt-32 pb-28 bg-secondary">
+        <SectionContainer>
+          <SvgImage>
+            <FaFolder />
+          </SvgImage>
+          <article className="md:w-2/3 md:pl-20">
+            <Title1>
+              Organize your Todos in <span className="text-active">foldres</span>
+            </Title1>
+            <TextBlock >
+              <p>
+                Unlock a new level of productivity by <span className="text-active">organizing</span> your todos into folders.
+              </p>
+              <p>
+                With streamlined <span className="text-active">categorization</span>, effortlessly manage different aspects of your life or projects.
+              </p>
+            </TextBlock>
+          </article>
+        </SectionContainer>
       </section>
-      <section>
-        <article>
-          {/* h1 */}
-        </article>
-      </section>
-    </div>
+      <footer className="bg-tertiary py-4 text-lg text-center">
+        <p>Made by <Link className="text-active" href="">Ņikita Obrazcovs</Link>. © 2023 All rights reserved.</p>
+      </footer>
+    </div >
   )
 }

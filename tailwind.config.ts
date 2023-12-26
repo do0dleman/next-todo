@@ -23,6 +23,7 @@ export default {
         inactive: '#64748b',
         mainel: '#f1f5f9',
         error: '#CB1515',
+        deepBlue: '#040126'
       },
       fontFamily: {
         sans: ["var(--font-sans)", ...fontFamily.sans],
