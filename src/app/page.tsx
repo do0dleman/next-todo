@@ -16,7 +16,7 @@ export default function Home() {
     <div className="bg-transparent flex-1">
       <Header isMainPage={true} />
       <main className="flex flex-wrap container min-w-full
-      flex-col items-center justify-center md:mt-40 mt-32 md:pb-24 pb-32">
+      flex-col items-center justify-center md:mt-56 mt-32 md:pb-24 pb-32">
         <h1 className="md:text-7xl text-6xl uppercase md:px-32 px-6 self-center text-center">
           <AnimateText
             duration={70}
