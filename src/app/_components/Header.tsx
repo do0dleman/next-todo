@@ -28,11 +28,11 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
         }
     }, [scrollY])
 
-
     return (
         <header className={`py-4 px-8 mb-4 flex justify-between align-middle 
         bg-active fixed w-full transition-colors duration-300 z-50 
-        ${isMainPage && isOnTop ? '!bg-transparent' : 'shadow-2xl'}`}>
+        ${isMainPage && isOnTop ? '!bg-transparent' : ''}
+        ${isOnTop ? '' : 'shadow-2xl'}`}>
             <h2 className="text-4xl">
                 <Link href="/" className="flex gap-2"><Icon />TODOs</Link>
             </h2>

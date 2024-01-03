@@ -83,7 +83,7 @@ function AnimateText({ text, duration = 50, brPositions, contentOnFinish }: Anim
                 >
                     {contentOnFinish}
                 </span> :
-                    <span className={`absolute w-[105%] top-0 left-0 text-mainel z-[1] 
+                    <span className={`absolute w-[101%] top-0 left-0 text-mainel z-[1] 
                 after:content-['|'] after:text-active select-text
                 ${isFinished ? 'after:animate-blink' : ''}`}
                         dangerouslySetInnerHTML={{

@@ -16,7 +16,7 @@ export default function Home() {
     <div className="bg-transparent flex-1">
       <Header isMainPage={true} />
       <main className="flex flex-wrap container min-w-full
-      flex-col items-center justify-center md:mt-56 mt-32 md:pb-24 pb-32">
+      flex-col items-center justify-center md:mt-48 mt-32 md:pb-24 pb-32">
         <h1 className="md:text-7xl text-6xl uppercase md:px-32 px-6 self-center text-center">
           <AnimateText
             duration={70}
@@ -40,7 +40,7 @@ export default function Home() {
       <section className="bg-main pb-20 pt-16 relative">
         <SectionWave className="absolute top-0 translate-y-[-100%] rotate-180 children:fill-main" />
         <SectionContainer>
-          <article className="md:w-2/3 md:pr-20">
+          <article className="md:w-2/3 md:pr-12">
             <Title1>
               <AnimateText
                 text={"Make your life easier"}
@@ -65,10 +65,10 @@ export default function Home() {
       <section className="pt-12 pb-10 md:pb-28 bg-secondary">
         <SectionWave className="children:opacity-0" />
         <SectionContainer>
-          <SvgImage>
+          <SvgImage className="md:pr-12">
             <FaFolder />
           </SvgImage>
-          <article className="md:w-2/3 md:pl-20">
+          <article className="md:w-2/3">
             <Title1>
               <AnimateText
                 text="Organize your Todos in folders"
