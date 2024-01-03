@@ -3,7 +3,7 @@ import { useRef, useState } from "react"
 import type { ChangeEvent, KeyboardEvent } from "react"
 import useErrorStore from "~/app/store/useErrorStore"
 import { api } from "~/trpc/react"
-import useTodoStore from "../../../store"
+import useTodoStore from "../../../todoStore"
 import EditFolderMenu from "./EditFolderMenu"
 import useInputFieldEdit from "~/app/hooks/useInputFieldEdit"
 

@@ -4,7 +4,7 @@ import { useUser } from "@clerk/nextjs"
 import { ChangeEvent, useEffect, useState } from "react"
 import useErrorStore from "~/app/store/useErrorStore"
 import { api } from "~/trpc/react"
-import useTodoStore from "../../../store"
+import useTodoStore from "../../../todoStore"
 
 type createTodoProps = {
     refetch: () => void

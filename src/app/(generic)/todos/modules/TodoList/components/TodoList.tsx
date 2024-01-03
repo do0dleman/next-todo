@@ -1,15 +1,25 @@
-import { Todo as TodoType } from "@prisma/client"
+"use client"
+
 import Todo from "./Todo"
 import { HashLoader } from "react-spinners"
-import useTodoStore from "../../../store"
+import useTodoStore from "../../../todoStore"
+import useTodoListStore from "../todoListStore"
+import { useEffect, useState } from "react"
 
 
-type TodoListProps = {
-    todos: TodoType[] | undefined,
-}
-
-function TodoList({ todos }: TodoListProps) {
+function TodoList() {
     const currentFolderId = useTodoStore(state => state.currentFolderId)
+    const getActiveTodos = useTodoListStore(store => store.getActiveTodos)
+    const getInactiveTodos = useTodoListStore(store => store.getInactiveTodos)
+
+    const todos = useTodoListStore(store => store.todos)
+    const [activeTodos, setActiveTodos] = useState(getActiveTodos())
+    const [inactiveTodos, setInactiveTodos] = useState(getInactiveTodos())
+
+    useEffect(() => {
+        setActiveTodos(getActiveTodos())
+        setInactiveTodos(getInactiveTodos())
+    }, [todos])
 
     if (currentFolderId === undefined) return <div className="flex items-center justify-center h-full">
         <h2 className="text-2xl">Select a Folder</h2>
@@ -21,9 +31,12 @@ function TodoList({ todos }: TodoListProps) {
         </div>
     }
 
+
     return (
-        <div className="px-0 h-full">
-            {todos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
+        <div className="px-8 h-full">
+            {activeTodos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
+            <h2 className="text-inactive mt-2">Completed:</h2>
+            {inactiveTodos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
             {(todos.length === 0) &&
                 <div className="container mx-auto text-center text-xl mt-4">
                     {`No todos here yet`}

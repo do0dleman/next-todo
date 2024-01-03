@@ -6,18 +6,20 @@ import { api } from "~/trpc/react";
 import EditTodoMenu from "./EditTodoMenu";
 import useErrorStore from "~/app/store/useErrorStore";
 import useInputFieldEdit from "~/app/hooks/useInputFieldEdit";
+import useTodoListStore from "../todoListStore";
 
 type TodoProps = {
     todoObject: Todo,
 }
 function Todo(props: TodoProps) {
     const { body, isActive, id, createdAt, updatedAt } = props.todoObject
-    const [isChecked, setChecked] = useState(!isActive)
     const [isDeleting, setDeleting] = useState(false)
 
     const [todoBody, setTodoBody] = useState(body)
 
     const setError = useErrorStore(state => state.setError)
+    const setTodos = useTodoListStore(state => state.setTodos)
+    const todos = useTodoListStore(state => state.todos)
 
     const updateTodo = api.todo.updateTodo.useMutation({
         onError: (error) => {
@@ -29,10 +31,18 @@ function Todo(props: TodoProps) {
     })
 
     const HandleTodoStateChange = () => {
-        setChecked(!isChecked)
+
+        const newTodos = [
+            ...todos!.filter(todo => todo.id !== id),
+            {
+                ...props.todoObject,
+                isActive: !isActive
+            }
+        ]
+        setTodos(newTodos)
         updateTodo.mutate({
             id: id,
-            isAcitve: isChecked,
+            isAcitve: !isActive,
             body: body
         })
     }
@@ -97,13 +107,13 @@ function Todo(props: TodoProps) {
                 //     leaveTo="opacity-0 translate-y-3"
                 // >
                 <label htmlFor={`${id}`}
-                    className=" text-2xl flex justify-between align-middle px-8 
+                    className=" text-2xl flex justify-between align-middle  
                     fill-none hover:fill-inactive">
                     <div className="py-2 w-full flex items-start">
                         <input type="checkbox"
                             name={`${id}`}
                             id={`${id}`}
-                            defaultChecked={isChecked}
+                            defaultChecked={!isActive}
                             onChange={HandleTodoStateChange}
                             className="mt-1 mr-3 w-6 h-6 accent-active peer" />
                         <label
