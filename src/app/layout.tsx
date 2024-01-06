@@ -28,7 +28,7 @@ export default function RootLayout({
       baseTheme: dark
     }}>
       <html lang="en">
-        <body className={`font-sans ${inter.variable} min-h-[calc(100dvh)] 
+        <body className={`font-sans ${inter.variable} max-h-[calc(100dvh)] 
         bg-main text-mainel font-mono flex flex-col overflow-x-hidden`}>
           <ErrorProvider>
             <TRPCReactProvider cookies={cookies().toString()}>

@@ -27,7 +27,9 @@ function FoldersSection({ showMobiles }: { showMobiles: boolean }) {
 
     return (
         <>
-            {showMobiles ? <div className={`flex bg-main flex-1 basis-1/4 pt-2 px-4`}>
+            {showMobiles ? <div className={`flex bg-main flex-1 basis-1/4 pt-2 px-4
+    
+            `}>
                 <FolderList folders={folders} refetch={refetch} />
             </div> : <></>}
         </>

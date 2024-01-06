@@ -1,7 +1,7 @@
 "use client";
 
 import FoldersSection from "./modules/TodoFolders/FoldersSection";
-import TodosSection from "./modules/TodoList/TodosSection";
+import TodosSection from "./modules/TodoSection/TodosSection";
 import MobileSectionPicker from "./components/MobileSectionPicker";
 import { useState } from "react";
 import useMedia from "~/app/hooks/useMedia";
@@ -19,7 +19,7 @@ function Todos() {
         setShowFolders(false)
     }
     return (
-        <div className="h-full max-h-full flex-grow flex flex-col">
+        <div className="h-full flex-grow flex flex-col min-h-[calc(100dvh-5rem)]">
             <div className="flex h-full max-h-full flex-grow">
                 <FoldersSection showMobiles={isShowFolders || IS_NOT_MOBILE} />
                 <TodosSection showMobiles={!isShowFolders || IS_NOT_MOBILE} />

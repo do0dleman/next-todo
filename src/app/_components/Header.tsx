@@ -29,11 +29,11 @@ function Header({ isMainPage = false }: { isMainPage?: boolean }) {
     }, [scrollY])
 
     return (
-        <header className={`py-4 px-8 mb-4 flex justify-between align-middle 
-        bg-active fixed w-full transition-colors duration-300 z-50 
+        <header className={`px-8 mb-4 flex justify-between align-middle 
+        bg-active fixed w-full transition-colors duration-300 z-50 h-20
         ${isMainPage && isOnTop ? '!bg-transparent' : ''}
         ${isOnTop ? '' : 'shadow-2xl'}`}>
-            <h2 className="text-4xl">
+            <h2 className="text-4xl flex items-center">
                 <Link href="/" className="flex gap-2"><Icon />TODOs</Link>
             </h2>
 

@@ -69,7 +69,7 @@ function CreateTodo(props: createTodoProps) {
 
     return (
         <>
-            <form action={createTodoAction} className="w-full bg-tertiary py-4 ">
+            <form action={createTodoAction} className="w-full bg-tertiary h-20 flex py-4 ">
                 <input type="text"
                     disabled={isDisabled}
                     name="body"

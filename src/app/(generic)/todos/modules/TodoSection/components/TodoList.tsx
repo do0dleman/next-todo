@@ -32,7 +32,7 @@ function TodoList() {
     }
 
     return (
-        <div className="px-8 h-full">
+        <div className="px-8 h-[calc(100dvh-5rem-5rem)] overflow-y-scroll">
             {activeTodos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
             {(inactiveTodos.length !== 0) && <h2 className="text-inactive mt-2">Completed:</h2>}
             {inactiveTodos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
