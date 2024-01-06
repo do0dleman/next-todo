@@ -83,7 +83,7 @@ const useTodoListStore = create<TodoListStore>((set, get) => ({
 
         return {
             todos: [
-                ...(todos === undefined ? [] : todos),
+                ...(todos ?? []),
                 newTodo
             ]
         }
