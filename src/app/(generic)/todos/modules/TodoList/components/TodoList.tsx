@@ -31,11 +31,10 @@ function TodoList() {
         </div>
     }
 
-
     return (
         <div className="px-8 h-full">
             {activeTodos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
-            <h2 className="text-inactive mt-2">Completed:</h2>
+            {(inactiveTodos.length !== 0) && <h2 className="text-inactive mt-2">Completed:</h2>}
             {inactiveTodos.map((todo) => <Todo todoObject={todo} key={todo.id} />)}
             {(todos.length === 0) &&
                 <div className="container mx-auto text-center text-xl mt-4">

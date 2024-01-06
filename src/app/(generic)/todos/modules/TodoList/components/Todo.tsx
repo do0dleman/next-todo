@@ -14,35 +14,30 @@ type TodoProps = {
 function Todo(props: TodoProps) {
     const { body, isActive, id, createdAt, updatedAt } = props.todoObject
     const [isDeleting, setDeleting] = useState(false)
+    const [isCheckboxActive, setCheckboxActive] = useState(isActive)
 
     const [todoBody, setTodoBody] = useState(body)
 
     const setError = useErrorStore(state => state.setError)
     const setTodos = useTodoListStore(state => state.setTodos)
     const todos = useTodoListStore(state => state.todos)
+    const mutateTodo = useTodoListStore(state => state.mutateTodo)
 
     const updateTodo = api.todo.updateTodo.useMutation({
         onError: (error) => {
             setError(error.data?.zodError?.fieldErrors.body![0])
         }
     })
+
     const deleteTodo = api.todo.deleteTodo.useMutation({
         onError: () => setDeleting(false)
     })
 
     const HandleTodoStateChange = () => {
-
-        const newTodos = [
-            ...todos!.filter(todo => todo.id !== id),
-            {
-                ...props.todoObject,
-                isActive: !isActive
-            }
-        ]
-        setTodos(newTodos)
-        updateTodo.mutate({
+        setCheckboxActive(!isCheckboxActive)
+        mutateTodo(updateTodo, {
             id: id,
-            isAcitve: !isActive,
+            isActive: !isCheckboxActive,
             body: body
         })
     }
@@ -66,10 +61,10 @@ function Todo(props: TodoProps) {
             return
         }
         if (body != todoBody) {
-            updateTodo.mutate({
+            mutateTodo(updateTodo, {
                 id: id,
                 body: todoBody,
-                isAcitve: isActive
+                isActive: isActive
             })
         }
     }
@@ -113,7 +108,7 @@ function Todo(props: TodoProps) {
                         <input type="checkbox"
                             name={`${id}`}
                             id={`${id}`}
-                            defaultChecked={!isActive}
+                            defaultChecked={!isCheckboxActive}
                             onChange={HandleTodoStateChange}
                             className="mt-1 mr-3 w-6 h-6 accent-active peer" />
                         <label

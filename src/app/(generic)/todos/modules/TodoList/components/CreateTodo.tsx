@@ -5,6 +5,7 @@ import { ChangeEvent, useEffect, useState } from "react"
 import useErrorStore from "~/app/store/useErrorStore"
 import { api } from "~/trpc/react"
 import useTodoStore from "../../../todoStore"
+import useTodoListStore from "../todoListStore"
 
 type createTodoProps = {
     refetch: () => void
@@ -13,6 +14,8 @@ function CreateTodo(props: createTodoProps) {
     const { user } = useUser()
 
     const currentFolderId = useTodoStore(state => state.currentFolderId)
+    const deleteTodoLocaly = useTodoListStore(state => state.deleteTodoLocaly)
+    const createTodo = useTodoListStore(state => state.createTodo)
     const [isDisabled, setDisabled] = useState(currentFolderId === undefined)
 
     useEffect(() => {
@@ -31,8 +34,9 @@ function CreateTodo(props: createTodoProps) {
 
     const setError = useErrorStore(state => state.setError)
 
-    const createTodo = api.todo.createTodo.useMutation({
+    const ApiCreateTodo = api.todo.createTodo.useMutation({
         onSuccess: () => {
+            deleteTodoLocaly(Infinity)
             props.refetch()
             setInputValue("")
             setDisabled(false)
@@ -56,7 +60,7 @@ function CreateTodo(props: createTodoProps) {
         }
 
         setDisabled(true)
-        createTodo.mutate({
+        createTodo(ApiCreateTodo, {
             body: formData.get('body') as string,
             userId: user!.id,
             todoFolderId: currentFolderId
