@@ -75,15 +75,15 @@ function AnimateText({ text, duration = 50, brPositions, contentOnFinish }: Anim
         <>
             <div className="relative text-transparent p-inherit select-none" ref={textRef}>
                 <span className="w-full block" dangerouslySetInnerHTML={{
-                    __html: placeholderText
+                    __html: placeholderText + '|'
                 }} />
 
-                {isFinished ? <span className={`absolute w-[105%] top-0 left-0 text-mainel z-[1] 
+                {isFinished ? <span className={`absolute top-0 left-0 text-mainel z-[1] 
                     after:content-['|'] after:text-active select-text after:animate-blink`}
                 >
                     {contentOnFinish}
                 </span> :
-                    <span className={`absolute w-[101%] top-0 left-0 text-mainel z-[1] 
+                    <span className={`absolute top-0 left-0 text-mainel z-[1] 
                 after:content-['|'] after:text-active select-text
                 ${isFinished ? 'after:animate-blink' : ''}`}
                         dangerouslySetInnerHTML={{
