@@ -12,7 +12,7 @@
     "start": "next start"
   },
   "dependencies": {
-    "@clerk/nextjs": "^4.27.1",
+    "@clerk/nextjs": "^4.29.3",
     "@clerk/themes": "^1.7.9",
     "@clerk/types": "^3.60.0",
     "@headlessui/react": "^1.7.17",
