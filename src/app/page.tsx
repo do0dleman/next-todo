@@ -28,7 +28,7 @@ export default function Home() {
             </>}
           />
         </h1>
-        <h4 className="md:text-2xl text-lg text-center mt-8 md:mt-12 px-8 max-w-5xl">
+        <h4 className="md:text-2xl text-lg text-center mt-8 md:mt-12 px-2 md:px-8 max-w-5xl">
           This is yet another to do app. You might think that the fact that so many people create such apps
           shows how non-creative we&apos;ve become, but it is a good practice for us, developers.
         </h4>
