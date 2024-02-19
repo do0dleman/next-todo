@@ -23,7 +23,7 @@ function FolderList({ folders, refetch }: FolderListProps) {
                 </span>
             </h2>
 
-            <div className="h-full">
+            <div className="h-[calc(100dvh-5rem-5rem)]">
                 {folders === undefined ?
                     <div className="h-full w-full flex justify-center mt-20">
                         <HashLoader color="#fff" size={100} />
