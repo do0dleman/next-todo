@@ -2,6 +2,7 @@ import { TodoFolder } from "@prisma/client"
 import { FaFolder } from "react-icons/fa"
 import Folder from "./Folder"
 import CreateFolder from "./CreateFolder"
+import { HashLoader } from "react-spinners"
 
 type FolderListProps = {
     folders: TodoFolder[] | undefined
@@ -22,8 +23,12 @@ function FolderList({ folders, refetch }: FolderListProps) {
                 </span>
             </h2>
 
-            <div className="">
-                {folders === undefined ? <></> :
+            <div className="h-full">
+                {folders === undefined ?
+                    <div className="h-full w-full flex justify-center mt-20">
+                        <HashLoader color="#fff" size={100} />
+                    </div>
+                    :
                     folders.sort().map(folder => <Folder folder={folder} key={folder.id} />)}
             </div>
         </div>
