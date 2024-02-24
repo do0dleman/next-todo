@@ -10,7 +10,6 @@ type AnimateTextProps = {
     contentOnFinish?: React.ReactNode
 }
 function AnimateText({ text, duration = 50, brPositions, contentOnFinish }: AnimateTextProps) {
-
     const [displayText, setDisplayText] = useState('')
     const indexRef = useRef<number>(0)
     const [isFinished, setFinished] = useState(false)
@@ -84,7 +83,7 @@ function AnimateText({ text, duration = 50, brPositions, contentOnFinish }: Anim
                     {contentOnFinish}
                 </span> :
                     <span className={`absolute top-0 left-0 text-mainel z-[1] 
-                after:content-['|'] after:text-active select-text
+                after:content-['|'] after:text-active select-text w-full
                 ${isFinished ? 'after:animate-blink' : ''}`}
                         dangerouslySetInnerHTML={{
                             __html: displayText

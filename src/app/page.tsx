@@ -17,7 +17,7 @@ export default function Home() {
       <Header isMainPage={true} />
       <main className="flex flex-wrap container min-w-full
       flex-col items-center justify-center md:mt-48 mt-32 md:pb-24 pb-32">
-        <h1 className="md:text-7xl text-5xl uppercase md:px-32 px-6 self-center text-center">
+        <h1 className="md:text-7xl text-5xl uppercase md:px-32 px-6 text-center">
           <AnimateText
             duration={70}
             text={"Welcome to my own generic TODO app"}
